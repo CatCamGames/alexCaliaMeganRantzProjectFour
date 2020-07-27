@@ -9,8 +9,8 @@
 const app = {}
 
 app.selectionGenre = "";
-app.currentDate = Date();
-
+//app.currentDate = Date();
+app.games = [];
 // API Calls
 app.apiGeneral = function() {
     $.ajax({
@@ -24,8 +24,27 @@ app.apiGeneral = function() {
             page_size: 8
         }
     }).then((data)=>{
-        console.log(data.results);
+        app.games = data.results;
     });
+}
+
+app.gridCreation = function(){
+   //results array comes in and then we for each them into template literals appended the games ul.  
+    $.each(app.games, function(){
+        $('.games').append(
+            `<li>
+                <div style="background-image:url(${this.background_image})>
+                    <h3>${this.name}</h3>
+                </div>
+                <time datetime="${this.released}">${this.released}</time>
+                <p>GENRES</p>
+                <ul><li>PLATFORMS</li><ul>
+            </li>`
+        )
+    });
+   
+
+    //<li><div background-image><h3>TITLE</h3></div>p release date list of genres Date- list of icons platforms </li>
 }
 
 // Event Listeners
@@ -39,11 +58,15 @@ app.selectionListener = function() {
 app.init = function() {
     app.selectionListener();
     app.apiGeneral();
+    app.gridCreation();
 }
 
 // Document ready
 
 $(function(){
     app.init();
-    console.log(currentDate);
+
+    $.each(app.games, function(index){
+        console.log(this.name);
+    })
 })
