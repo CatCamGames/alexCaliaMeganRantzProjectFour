@@ -25,10 +25,14 @@ app.apiGeneral = function() {
         }
     }).then((data)=>{
         app.games = data.results;
+        $.each(app.games, function(){
+            app.gridCreation();
+        })
     });
 }
 
 app.gridCreation = function(){
+    $('.games').empty();
    //results array comes in and then we for each them into template literals appended the games ul.  
     $.each(app.games, function(){
         $('.games').append(
@@ -58,7 +62,7 @@ app.selectionListener = function() {
 app.init = function() {
     app.selectionListener();
     app.apiGeneral();
-    app.gridCreation();
+    
 }
 
 // Document ready
@@ -66,7 +70,10 @@ app.init = function() {
 $(function(){
     app.init();
 
-    $.each(app.games, function(index){
-        console.log(this.name);
+    // $('app.games').each(function(index){
+    //     console.log(index.name);
+    // })
+    app.games.forEach((item,)=> {
+        console.log(item.name);
     })
 })
