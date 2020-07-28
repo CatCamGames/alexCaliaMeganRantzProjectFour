@@ -3,15 +3,21 @@
     grid-template-columns: repeat(auto-fill, minmax(225px, 1fr) );
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 15px;
+    grid-column: 2/3;
 }
 
 .gameBox {
     div {
+        display: flex;
+        align-items: flex-end;
         height: 175px;
         h3 {
             color: white;
             background-color: black;
             display: inline;
+            font-family: sans-serif;
+            padding: 5px;
+            margin: 0 0 8px 8px;
         }
     }
 }

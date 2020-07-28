@@ -76,11 +76,43 @@ html {
 }
 
 .mainWrapper {
-  margin: 0 50px;
+  margin: 0 200px;
 }
 
-h1 {
-  color: red;
+.gridFather {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 50px 1fr;
+      grid-template-rows: 1fr 50px 1fr;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.gridFather header {
+  background-color: mediumseagreen;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1/3;
+  color: white;
+}
+
+main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  -ms-grid-columns: 225px 1fr;
+      grid-template-columns: 225px 1fr;
+  grid-gap: 15px;
+}
+
+main .form {
+  width: 225px;
+  height: calc(232.6px * 2 + 15px);
+  background-color: salmon;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
 }
 
 .games {
@@ -91,9 +123,18 @@ h1 {
   -ms-grid-rows: (1fr)[2];
       grid-template-rows: repeat(2, 1fr);
   grid-gap: 15px;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
 }
 
 .gameBox div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   height: 175px;
 }
 
@@ -101,4 +142,7 @@ h1 {
   color: white;
   background-color: black;
   display: inline;
+  font-family: sans-serif;
+  padding: 5px;
+  margin: 0 0 8px 8px;
 }
