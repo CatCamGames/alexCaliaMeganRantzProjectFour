@@ -36,7 +36,26 @@ app.gridCreation = function(){
     $('.games').empty();
 //results array comes in and then we for each them into template literals appended the games ul.  
     $.each(app.games, function(){
-        const gamePlatforms = this.parent_platforms.map((i)=> {return i.platform.slug}).join(", ");
+        const gamePlatforms = this.parent_platforms.map((i)=> {return i.platform.slug});
+        const iconPlatforms = $.map(gamePlatforms,(i)=>{
+            if (i === 'mac') {
+                return '<i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span>'
+            } else if (i === 'pc') {
+                return '<i class="fas fa-laptop" aria-hidden="true" title="Available for PC"></i><span class="srOnly">Available for PC</span>'
+            } else if (i === 'android') {
+                return '<i class="fab fa-android" aria-hidden="true" title="Available for Android"></i><span class="srOnly">Available for Android</span>'
+            } else if (i === 'playstation') {
+                return '<i class="fab fa-playstation" aria-hidden="true" title="Available for Playstation"></i><span class="srOnly">Available for Playstation</span>'
+            } else if (i === 'xbox'){
+                return '<i class="fab fa-xbox" aria-hidden="true" title="Available for Xbox"></i><span class="srOnly">Available for Xbox</span>'
+            } else if (i === 'linux') {
+                return '<i class="fab fa-linux" aria-hidden="true" title="Available for Linux"></i><span class="srOnly">Available for Linux</span>'
+            } else if (i === 'nintendo') {
+                return '<i class="fas fa-gamepad" aria-hidden="true" title="Available for Nintendo Switch"></i><span class="srOnly">Available for Nintendo Switch</span>'
+            } else if (i === 'ios') {
+                return '<i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span>'
+            }
+        }).join("");
         const gameGenres = this.genres.map((i)=>{return i.name}).join(", ");
         $('.games').append(
             `<li class="gameBox">
@@ -46,7 +65,7 @@ app.gridCreation = function(){
                 <article>
                     <time datetime="${this.released}">${this.released}</time>
                     <p>${gameGenres}</p>
-                    <ul><li>${gamePlatforms}</li><ul>
+                    <ul><li>${iconPlatforms}</li><ul>
                 </article>
             </li>`
         );
@@ -57,8 +76,12 @@ app.gridCreation = function(){
 app.selectionListener = function() {
     $('.genreSelect').on('change', function () {
         app.selectionGenre = $(this).val();
-        let urlGenre = `https://api.rawg.io/api/games?dates=${app.todaysDate},${app.futureDate}&genres=${$(this).val()}`;
-        app.apiGeneral(urlGenre);
+        if (app.selectionGenre !== 'allGames') {
+            let urlGenre = `https://api.rawg.io/api/games?dates=${app.todaysDate},${app.futureDate}&genres=${$(this).val()}`;
+            app.apiGeneral(urlGenre);
+        } else {
+            app.apiGeneral(app.urlGen);
+        }
         console.log(urlGenre);
     });
 }
@@ -66,9 +89,17 @@ app.selectionListener = function() {
 app.init = function() {
     app.selectionListener();
     app.apiGeneral(app.urlGen);
-
 }
 // Document ready
 $(function(){
     app.init();
 })
+
+// <i class="fab fa-apple"></i>
+// <i class="fab fa-app-store-ios"></i>
+// <i class="fab fa-android"></i>
+// <i class="fab fa-playstation"></i>
+// <i class="fab fa-xbox"></i>
+// <i class="fab fa-linux"></i>
+// <i class="fas fa-laptop"></i>
+// <i class="fas fa-gamepad"></i>
