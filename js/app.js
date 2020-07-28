@@ -27,6 +27,7 @@ app.apiGeneral = function() {
         app.games = data.results;
         $.each(app.games, function(){
             app.gridCreation();
+            console.log(this.background_image);
         })
     });
 }
@@ -37,9 +38,7 @@ app.gridCreation = function(){
     $.each(app.games, function(){
         $('.games').append(
             `<li>
-                <div style="background-image:url(${this.background_image})>
-                    <h3>${this.name}</h3>
-                </div>
+                <div style="background-image:url(${this.background_image})"><h3>${this.name}</h3></div>
                 <time datetime="${this.released}">${this.released}</time>
                 <p>GENRES</p>
                 <ul><li>PLATFORMS</li><ul>
