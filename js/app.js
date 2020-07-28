@@ -49,9 +49,6 @@ app.gridCreation = function(){
             </li>`
         );
     });
-   
-
-    //<li><div background-image><h3>TITLE</h3></div>p release date list of genres Date- list of icons platforms </li>
 }
 
 // Event Listeners
@@ -65,11 +62,9 @@ app.selectionListener = function() {
 app.init = function() {
     app.selectionListener();
     app.apiGeneral();
-    
 }
 
 // Document ready
-
 $(function(){
     app.init();
 })
