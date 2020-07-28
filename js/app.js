@@ -9,12 +9,14 @@
 const app = {}
 
 app.selectionGenre = "";
-//app.currentDate = Date();
+app.currentDate = new Date();
+app.todaysDate = `${app.currentDate.getFullYear()}-${app.currentDate.getMonth()+1}-${app.currentDate.getDate()}`;
 app.games = [];
+app.url = `https://api.rawg.io/api/games?dates=${app.todaysDate},2021-04-01`
 // API Calls
 app.apiGeneral = function() {
     $.ajax({
-        url: 'https://api.rawg.io/api/games?dates=2020-04-01,2021-04-01',
+        url: `https://api.rawg.io/api/games?dates=2020-07-27,2021-07-27`,
         method: 'GET',
         dataType: 'json',
         headers: {
@@ -37,14 +39,14 @@ app.gridCreation = function(){
     $.each(app.games, function(){
         $('.games').append(
             `<li>
-                <div style="background-image:url(${this.background_image})>
+                <div style="background-image:url(${this.background_image}")>
                     <h3>${this.name}</h3>
                 </div>
                 <time datetime="${this.released}">${this.released}</time>
                 <p>GENRES</p>
                 <ul><li>PLATFORMS</li><ul>
             </li>`
-        )
+        );
     });
    
 
@@ -69,11 +71,4 @@ app.init = function() {
 
 $(function(){
     app.init();
-
-    // $('app.games').each(function(index){
-    //     console.log(index.name);
-    // })
-    app.games.forEach((item,)=> {
-        console.log(item.name);
-    })
 })
