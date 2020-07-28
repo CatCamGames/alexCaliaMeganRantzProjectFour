@@ -71,6 +71,20 @@ table {
   overflow: hidden;
 }
 
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 html {
   font-size: 120%;
 }
@@ -161,7 +175,7 @@ main .form {
   display: inline;
   font-family: sans-serif;
   padding: 5px;
-  margin: 0 0 8px 8px;
+  margin: 0 8px 8px 8px;
 }
 
 .gameBox article {
