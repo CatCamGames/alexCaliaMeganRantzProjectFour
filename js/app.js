@@ -39,7 +39,7 @@ app.gridCreation = function(){
         const gamePlatforms = this.parent_platforms.map((i)=> {return i.platform.slug}).join(", ");
         const gameGenres = this.genres.map((i)=>{return i.name}).join(", ");
         $('.games').append(
-            `<li>
+            `<li class="gameBox">
                 <div style="background-image:url(${this.background_image}")>
                     <h3>${this.name}</h3>
                 </div>

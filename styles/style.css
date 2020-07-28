@@ -92,3 +92,13 @@ h1 {
       grid-template-rows: repeat(2, 1fr);
   grid-gap: 15px;
 }
+
+.gameBox div {
+  height: 175px;
+}
+
+.gameBox div h3 {
+  color: white;
+  background-color: black;
+  display: inline;
+}
