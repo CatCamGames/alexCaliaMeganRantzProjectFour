@@ -10,13 +10,14 @@ const app = {}
 
 app.selectionGenre = "";
 app.currentDate = new Date();
-app.todaysDate = `${app.currentDate.getFullYear()}-${app.currentDate.getMonth()+1}-${app.currentDate.getDate()}`;
+app.todaysDate = `${app.currentDate.getFullYear()}-${("0" + (app.currentDate.getMonth() + 1)).slice(-2)}-${("0" + (app.currentDate.getDate())).slice(-2)}`;
+app.futureDate = `${app.currentDate.getFullYear() + 1}-${("0" + (app.currentDate.getMonth() + 1)).slice(-2)}-${("0" + (app.currentDate.getDate())).slice(-2)}`;
 app.games = [];
-app.url = `https://api.rawg.io/api/games?dates=${app.todaysDate},2021-04-01`
+
 // API Calls
-app.apiGeneral = function() {
+app.apiGeneral = function(){
     $.ajax({
-        url: `https://api.rawg.io/api/games?dates=2020-07-27,2021-07-27`,
+        url: `https://api.rawg.io/api/games?dates=${app.todaysDate},${app.futureDate}`,
         method: 'GET',
         dataType: 'json',
         headers: {
