@@ -64,6 +64,7 @@ app.selectionListener = function() {
 app.init = function() {
     app.selectionListener();
     app.apiGeneral(app.urlGen);
+
 }
 // Document ready
 $(function(){
