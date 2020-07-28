@@ -43,9 +43,11 @@ app.gridCreation = function(){
                 <div style="background-image:url(${this.background_image}")>
                     <h3>${this.name}</h3>
                 </div>
-                <time datetime="${this.released}">${this.released}</time>
-                <p>${gameGenres}</p>
-                <ul><li>${gamePlatforms}</li><ul>
+                <article>
+                    <time datetime="${this.released}">${this.released}</time>
+                    <p>${gameGenres}</p>
+                    <ul><li>${gamePlatforms}</li><ul>
+                </article>
             </li>`
         );
     });
