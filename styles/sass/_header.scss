@@ -1,3 +1,12 @@
-h1 {
-    color: red;
+.gridFather {
+    display:grid;
+    grid-template-rows: 1fr 50px 1fr;
+    grid-template-columns: 1fr;
+
+    header {
+        background-color: mediumseagreen;
+        grid-row: 1/3;
+        color: white;
+    }
 }
+
