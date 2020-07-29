@@ -6,12 +6,30 @@
     grid-template-columns: 250px 1fr;
     grid-gap: 15px;
     margin-bottom: 100px;
-    .form {
-        width: 250px;
-        height: calc(232.6px * 2 + 15px);
-        background-color: salmon;
-        grid-column: 1/2;
-    }
+        .form {
+            width: 250px;
+            height: calc(240px * 2 + 15px);
+            background-color: rgb(70,70,70);
+            box-shadow: 5px 5px 10px slategray;
+            border-radius: 4px;
+            grid-column: 1/2;
+            color: white;
+            h4{
+                font-family: $titleFont;
+                font-size: 1.75rem;
+                margin: 15px;
+            }
+            label{
+                font-family: sans-serif;
+                display: block;
+                margin-left: 15px;
+            }
+            select {
+                margin: 5px 0 0 15px;
+                width: calc(250px - 50px);
+                font-size: 0.8rem;
+            }
+        }
     }
 
 

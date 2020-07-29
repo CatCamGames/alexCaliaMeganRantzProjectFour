@@ -9,6 +9,9 @@
 .gameBox {
     box-shadow: 0 0 10px slategray;
     border-radius: 4px;
+    height: 240px;
+    position: relative;
+    transition: transform 0.2s;
     div {
         display: flex;
         align-items: flex-end;
@@ -17,10 +20,10 @@
         background-size: cover;
         h3 {
             color: white;
-            background-color: black;
+            background-color: rgba(0,20,30,.8);
             display: inline;
             font-family: sans-serif;
-            padding: 5px;
+            padding: 8px;
             margin: 0 8px 8px 8px;
         }
     }
@@ -28,8 +31,29 @@
         padding: 5px 8px;
         font-family: sans-serif;
         font-size: 0.8rem;
+        
         time {
             color: rgb(70,70,70);
         }
+        p{
+            margin-top: 3px;
+        }
+        ul {
+            position: absolute;
+            right: 5px;
+            bottom: 8px;
+            i{
+                margin-right: 3px;
+            }
+        }
     }
+}
+
+.gameBox:hover {
+    transform: scale(1.02);
+}
+
+.getMore {
+    background-color: rgb(70, 70, 70);
+    height: 240px;
 }
