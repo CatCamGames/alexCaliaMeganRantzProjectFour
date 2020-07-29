@@ -82,10 +82,12 @@ app.selectionListener = function() {
     $('.genreSelect').on('change', function () {
         $('.games').empty();
         if ($(this).val() !== 'allGames') {
-            let urlGenre = `${app.urlGen}&genres=${$(this).val()}`;
-            app.apiGeneral(urlGenre);
-            app.url = app.urlGenre
+            app.pageNum = 1
+            app.url = `${app.urlGen}&genres=${$(this).val()}`;
+            app.apiGeneral(app.url);
+            // app.url = app.urlGenre
         } else {
+            app.pageNum = 1
             app.apiGeneral(app.urlGen);
             app.url = app.urlGen
         }
@@ -94,9 +96,10 @@ app.selectionListener = function() {
 
 app.getMoreListener = function() {
     $('.games').on('click', '.getMore', function () {
-        $(this).empty().remove();
+        $(this).remove();
         app.pageNum ++;
         app.apiGeneral(app.url);
+        console.log(app.url);
     })
 }
 
