@@ -60,7 +60,7 @@ app.gridCreation = function(){
         }).join("");
         const gameGenres = this.genres.map((i)=>{return i.name}).join(", ");
         $('.games').append(
-            `<li class="gameBox">
+            `<li class="gameBox" value="${this.id}">
                 <div style="background-image:url(${this.background_image}")>
                     <h3>${this.name}</h3>
                 </div>
@@ -76,24 +76,71 @@ app.gridCreation = function(){
     <h3>BUTTONS ARE COOL</h3>
     </div><div`)
 }
-
-// Event Listeners
+//
+// Event Listeners looking for genre selection in form
 app.selectionListener = function() {
     $('.genreSelect').on('change', function () {
         $('.games').empty();
+        app.pageNum = 1
         if ($(this).val() !== 'allGames') {
-            app.pageNum = 1
             app.url = `${app.urlGen}&genres=${$(this).val()}`;
             app.apiGeneral(app.url);
             // app.url = app.urlGenre
         } else {
-            app.pageNum = 1
             app.apiGeneral(app.urlGen);
             app.url = app.urlGen
         }
     });
+
 }
 
+//Event listener for the pop-up window for game details
+app.gameDetailListener = function(){
+    $('ul').on('click', 'li', function(){
+        let gameDescription = ""
+        $.ajax({
+            url: `https://api.rawg.io/api/games/${$(this).attr("value")}`,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+            'User-Agent': 'Web Dev Bootcamp Project'
+            },
+        }).then(function(data){
+            gameDescription = data.description;
+            createsCard(data);
+        });
+            function createsCard (){
+                console.log(this.name)
+                /*const gamePlatforms = this.parent_platforms.map((i)=> {return i.platform.slug});
+                const iconPlatforms = $.map(gamePlatforms,(i)=>{
+                    if (i === 'mac') {
+                        return '<i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span>'
+                    } else if (i === 'pc') {
+                        return '<i class="fas fa-laptop" aria-hidden="true" title="Available for PC"></i><span class="srOnly">Available for PC</span>'
+                    } else if (i === 'android') {
+                        return '<i class="fab fa-android" aria-hidden="true" title="Available for Android"></i><span class="srOnly">Available for Android</span>'
+                    } else if (i === 'playstation') {
+                        return '<i class="fab fa-playstation" aria-hidden="true" title="Available for Playstation"></i><span class="srOnly">Available for Playstation</span>'
+                    } else if (i === 'xbox'){
+                        return '<i class="fab fa-xbox" aria-hidden="true" title="Available for Xbox"></i><span class="srOnly">Available for Xbox</span>'
+                    } else if (i === 'linux') {
+                        return '<i class="fab fa-linux" aria-hidden="true" title="Available for Linux"></i><span class="srOnly">Available for Linux</span>'
+                    } else if (i === 'nintendo') {
+                        return '<i class="fas fa-gamepad" aria-hidden="true" title="Available for Nintendo Switch"></i><span class="srOnly">Available for Nintendo Switch</span>'
+                    } else if (i === 'ios') {
+                        return '<i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span>'
+                    }
+                }).join("");*/
+                $('.popupBox').html(
+                    `<div style="background-image:url(${this.background_image}">
+                        <h3>${this.name}</h3>
+                        <ul><li></li><ul>
+                    </div>`
+                )
+            }
+    });
+}
+//Event listener to add next page of current specified filter of games
 app.getMoreListener = function() {
     $('.games').on('click', '.getMore', function () {
         $(this).remove();
@@ -106,6 +153,7 @@ app.getMoreListener = function() {
 // Init
 app.init = function() {
     app.selectionListener();
+    app.gameDetailListener();
     app.getMoreListener();
     app.apiGeneral(app.urlGen);
 }
