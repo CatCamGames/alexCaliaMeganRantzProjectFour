@@ -1,0 +1,17 @@
+@media (max-width: 720px) {
+    main{
+        grid-template-columns: 1fr;
+        grid-template-rows: 250px 1fr;
+        .form{
+            width: 100%;
+            height: 250px;
+            grid-column: 1/2;
+            grid-row: 1/2;
+        }
+    }
+
+    .games {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+} /// THIS IS THE END OF MEDIA QUERY DO NOT DELETE!!!!!!!!
