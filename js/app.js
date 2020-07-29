@@ -11,7 +11,9 @@ app.currentDate = new Date();
 app.todaysDate = `${app.currentDate.getFullYear()}-${("0" + (app.currentDate.getMonth() + 1)).slice(-2)}-${("0" + (app.currentDate.getDate())).slice(-2)}`;
 app.futureDate = `${app.currentDate.getFullYear() + 1}-${("0" + (app.currentDate.getMonth() + 1)).slice(-2)}-${("0" + (app.currentDate.getDate())).slice(-2)}`;
 app.games = [];
-app.urlGen = `https://api.rawg.io/api/games?dates=${app.todaysDate},${app.futureDate}`
+app.urlGen = `https://api.rawg.io/api/games?dates=${app.todaysDate},${app.futureDate}`;
+app.url = app.urlGen;
+app.pageNum = 1;
 // API Calls
 app.apiGeneral = function(i){
     $.ajax({
@@ -22,18 +24,18 @@ app.apiGeneral = function(i){
             'User-Agent': 'Web Dev Bootcamp Project'
         },
         data: {
+            page: app.pageNum,
             page_size: 8
         }
     }).then((data)=>{
         app.games = data.results;
-        $.each(app.games, function(){
-            app.gridCreation();
-        })
+        app.gridCreation();
+       
     });
 }
 
 app.gridCreation = function(){
-    $('.games').empty();
+    
 //results array comes in and then we for each them into template literals appended the games ul.  
     $.each(app.games, function(){
         const gamePlatforms = this.parent_platforms.map((i)=> {return i.platform.slug});
@@ -70,36 +72,41 @@ app.gridCreation = function(){
             </li>`
         );
     });
+    $('.games').append(`<div class="gameBox getMore"><div>
+    <h3>BUTTONS ARE COOL</h3>
+    </div><div`)
 }
 
 // Event Listeners
 app.selectionListener = function() {
     $('.genreSelect').on('change', function () {
-        app.selectionGenre = $(this).val();
-        if (app.selectionGenre !== 'allGames') {
-            let urlGenre = `https://api.rawg.io/api/games?dates=${app.todaysDate},${app.futureDate}&genres=${$(this).val()}`;
+        $('.games').empty();
+        if ($(this).val() !== 'allGames') {
+            let urlGenre = `${app.urlGen}&genres=${$(this).val()}`;
             app.apiGeneral(urlGenre);
+            app.url = app.urlGenre
         } else {
             app.apiGeneral(app.urlGen);
+            app.url = app.urlGen
         }
-        console.log(urlGenre);
     });
 }
+
+app.getMoreListener = function() {
+    $('.games').on('click', '.getMore', function () {
+        $(this).empty().remove();
+        app.pageNum ++;
+        app.apiGeneral(app.url);
+    })
+}
+
 // Init
 app.init = function() {
     app.selectionListener();
+    app.getMoreListener();
     app.apiGeneral(app.urlGen);
 }
 // Document ready
 $(function(){
     app.init();
 })
-
-// <i class="fab fa-apple"></i>
-// <i class="fab fa-app-store-ios"></i>
-// <i class="fab fa-android"></i>
-// <i class="fab fa-playstation"></i>
-// <i class="fab fa-xbox"></i>
-// <i class="fab fa-linux"></i>
-// <i class="fas fa-laptop"></i>
-// <i class="fas fa-gamepad"></i>
