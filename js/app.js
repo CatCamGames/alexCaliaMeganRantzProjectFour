@@ -68,7 +68,7 @@ app.gridCreation = function(){
         $('.games').append(
             `<li class="gameBox" value="${this.id}">
                 <div style="background-image:url(${this.background_image}")>
-                    <h3>${this.name}</h3>
+                    <h2>${this.name}</h2>
                 </div>
                 <article>
                     <time datetime="${this.released}">${this.released}</time>
@@ -136,23 +136,24 @@ app.gameDetailListener = function(){
                 }).join("");
                 const gameGenres = data.genres.map((i) => { return i.name }).join(", ");
                 $('.popupBox').html(
-                    `<div style="background-image:url(${data.background_image}">
+                    `<div class="popupHeader" style="background-image:url(${data.background_image}">
                         <div class="closePopup">
-                        <label class="srOnly">Close the popup</label>
-                        <span>xxxxxx</span><span></span>
+                            <label class="srOnly">Close the popup</label>
+                            <span></span><span></span>
                         </div>
-                        <h3>${data.name}</h3>
+                        <h2>${data.name}</h2>
                         <ul><li>${iconPlatforms}</li></ul>
                     </div>
-                    <div>
+                    <div class="popupMeta">
                         <time datetime="${data.released}">${data.released}</time>
                         <p>${gameGenres}</p>
                     </div>
-                    <div>
-                    <p>${data.description_raw}</p>
+                    <div class="popupDescription">
+                    ${data.description}
                     </div>
                     `
-                ).fadeIn(1000);
+                ).fadeIn(300);
+                $('.fullScreenBackground').fadeIn(300);
             
             }
     });
@@ -170,7 +171,8 @@ app.getMoreListener = function() {
 // Event listener for closing the popup window
 app.closePopupBox = function() {
     $('article').on('click', '.closePopup', function() {
-        $('.popupBox').fadeOut(1000);   
+        $('.popupBox').fadeOut(1000);
+        $('.fullScreenBackground').fadeOut(300);   
     })
 }
 
@@ -181,6 +183,7 @@ app.init = function() {
     app.getMoreListener();
     app.apiGeneral(app.urlGen);
     app.closePopupBox();
+    $('.fullScreenBackground').hide();  
 }
 
 // Document ready
