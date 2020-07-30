@@ -99,6 +99,15 @@ html {
   grid-column: 1/2;
 }
 
+.fullScreenBackground {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .gridFather {
   display: -ms-grid;
   display: grid;
@@ -179,6 +188,83 @@ main .form select {
   font-size: 0.8rem;
 }
 
+.popupBox {
+  position: fixed;
+  top: 100px;
+  width: calc(100% - 50%);
+  margin: 0 25%;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.popupHeader {
+  height: 200px;
+  border-radius: 4px 4px 0 0;
+  background-size: cover;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.popupHeader ul {
+  margin: 0 8px 8px 0;
+}
+
+.popupHeader ul i {
+  margin-left: 3px;
+}
+
+.closePopup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.closePopup span {
+  display: block;
+  height: 3px;
+  width: 30px;
+  background-color: #323232;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+.closePopup span:nth-of-type(1) {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.closePopup span:nth-of-type(2) {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.closePopup:hover span {
+  background-color: black;
+}
+
 .games {
   display: -ms-grid;
   display: grid;
@@ -190,6 +276,15 @@ main .form select {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2/3;
+}
+
+h2 {
+  color: white;
+  background-color: rgba(0, 20, 30, 0.8);
+  display: inline;
+  font-family: sans-serif;
+  padding: 8px;
+  margin: 0 8px 8px 8px;
 }
 
 .gameBox {
@@ -214,15 +309,6 @@ main .form select {
   height: 175px;
   border-radius: 4px 4px 0 0;
   background-size: cover;
-}
-
-.gameBox div h3 {
-  color: white;
-  background-color: rgba(0, 20, 30, 0.8);
-  display: inline;
-  font-family: sans-serif;
-  padding: 8px;
-  margin: 0 8px 8px 8px;
 }
 
 .gameBox article {

@@ -6,6 +6,15 @@
     grid-column: 2/3;
 }
 
+h2 {
+        color: white;
+        background-color: rgba(0,20,30,.8);
+        display: inline;
+        font-family: sans-serif;
+        padding: 8px;
+        margin: 0 8px 8px 8px;
+}
+
 .gameBox {
     box-shadow: 0 0 10px slategray;
     border-radius: 4px;
@@ -18,20 +27,12 @@
         height: 175px;
         border-radius: 4px 4px 0 0;
         background-size: cover;
-        h3 {
-            color: white;
-            background-color: rgba(0,20,30,.8);
-            display: inline;
-            font-family: sans-serif;
-            padding: 8px;
-            margin: 0 8px 8px 8px;
-        }
+       
     }
     article {
         padding: 5px 8px;
         font-family: sans-serif;
         font-size: 0.8rem;
-        
         time {
             color: rgb(70,70,70);
         }
