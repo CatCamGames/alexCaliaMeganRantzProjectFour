@@ -173,24 +173,46 @@ main .form {
   -ms-grid-column-span: 1;
   grid-column: 1/2;
   color: white;
+  padding: 15px;
 }
 
 main .form h4 {
   font-family: "Oswald", sans-serif;
   font-size: 1.75rem;
-  margin: 15px;
+  margin-bottom: 15px;
 }
 
 main .form label {
   font-family: sans-serif;
   display: block;
-  margin-left: 15px;
 }
 
 main .form select {
-  margin: 5px 0 0 15px;
+  margin-top: 5px;
   width: calc(250px - 50px);
   font-size: 0.8rem;
+}
+
+aside {
+  margin-top: 15px;
+  font-size: 0.8rem;
+}
+
+aside h5 {
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
+}
+
+aside ol {
+  list-style-type: decimal;
+  margin-top: 5px;
+  list-style-position: inside;
+}
+
+aside ol li {
+  margin-top: 10px;
+  letter-spacing: 1px;
+  line-height: 1.1;
 }
 
 .popupBox {

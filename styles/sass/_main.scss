@@ -12,20 +12,44 @@ margin-bottom: 100px;
         border-radius: 4px;
         grid-column: 1/2;
         color: white;
+        padding: 15px;
+
         h4{
             font-family: $titleFont;
             font-size: 1.75rem;
-            margin: 15px;
+            margin-bottom: 15px;
         }
         label{
             font-family: sans-serif;
             display: block;
-            margin-left: 15px;
         }
         select {
-            margin: 5px 0 0 15px;
+            margin-top: 5px;
             width: calc(250px - 50px);
             font-size: 0.8rem;
+        }
+    }
+}
+
+aside {
+    margin-top: 15px;
+    font-size: 0.8rem;
+    
+    h5 {
+        font-family: $titleFont;
+        font-size: 1rem;
+    }
+
+    ol {
+        list-style-type: decimal;
+        margin-top: 5px;
+        list-style-position: inside;
+        
+
+        li {
+            margin-top: 10px;
+            letter-spacing: 1px;
+            line-height: 1.1;
         }
     }
 }
