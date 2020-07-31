@@ -23,6 +23,7 @@ $games = $('.games');
 $genreSelect = $('.genreSelect');
 $popupBox = $('.popupBox');
 $fullScreenBackground = $('.fullScreenBackground');
+$scrollUp = $('.scrollUp');
 $dialog = $('dialog');
 
 
@@ -220,6 +221,22 @@ app.enterGetMoreCard = () => {
     })
 }
 
+app.scrollUpEnter = function () {
+    $(window).scroll(function(){
+        if($(this).scrollTop() > $games.offset().top){
+            $scrollUp.fadeIn(100);
+        } else {
+            $scrollUp.fadeOut(100);
+        }
+    })
+}
+
+app.scrollUpScrolling = function (){
+    $scrollUp.on('click', function(){
+        $('html, body').animate({scrollTop: 0}, 300);
+    })
+}
+
 // Init
 app.init = function() {
     app.selectionListener();
@@ -228,9 +245,13 @@ app.init = function() {
     app.apiGeneral(app.urlGen);
     app.closePopupBox();
     $fullScreenBackground.hide();
+    $article.hide();
     $dialog.hide();
+    $scrollUp.hide();
     app.enterListenerGameCard();
     app.enterGetMoreCard();
+    app.scrollUpEnter();
+    app.scrollUpScrolling();
 }
 
 // Document ready
