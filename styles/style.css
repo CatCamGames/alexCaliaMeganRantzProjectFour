@@ -113,6 +113,15 @@ a {
   color: white;
 }
 
+.skipLink {
+  position: absolute;
+  left: -1000px;
+  top: 5px;
+  z-index: 999;
+  background: white;
+  color: black;
+}
+
 .gridFather {
   display: -ms-grid;
   display: grid;
@@ -143,14 +152,15 @@ header div {
 
 header div h1 {
   font-family: "Oswald", sans-serif;
-  font-size: 4rem;
+  font-size: 6rem;
 }
 
 header div span {
   font-family: sans-serif;
+  font-size: 1.2rem;
   color: #c8c8c8;
   display: block;
-  margin-top: 18px;
+  margin: 25px 0 0 10px;
 }
 
 main {
@@ -497,6 +507,17 @@ footer p a:hover, footer p a:focus {
 
 footer p:last-child {
   width: 100%;
+}
+
+.scrollUp {
+  position: fixed;
+  bottom: 10px;
+  right: 7px;
+  font-size: 2.5rem;
+}
+
+.scrollUp a {
+  color: blue;
 }
 
 @media (max-width: 720px) {

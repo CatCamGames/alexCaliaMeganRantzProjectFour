@@ -17,13 +17,14 @@ header {
         margin: 100px 0 0 5vw;
         h1 {
             font-family: $titleFont;
-            font-size: 4rem;
+            font-size: 6rem;
         }
         span {
             font-family: sans-serif;
+            font-size: 1.2rem;
             color: rgb(200, 200, 200);
             display: block;
-            margin-top: 18px;
+            margin: 25px 0 0 10px;
         }
     }
 }
