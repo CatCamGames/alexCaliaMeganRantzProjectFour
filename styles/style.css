@@ -113,6 +113,15 @@ a {
   color: white;
 }
 
+.skipLink {
+  position: absolute;
+  left: -1000px;
+  top: 5px;
+  z-index: 999;
+  background: white;
+  color: black;
+}
+
 .gridFather {
   display: -ms-grid;
   display: grid;
@@ -126,6 +135,8 @@ header {
   background-color: black;
   background-image: url(https://media.rawg.io/media/games/126/126fbd5ceacddc6ad16fc96e50b1265b.jpg);
   background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
   grid-row: 1/3;
@@ -141,14 +152,15 @@ header div {
 
 header div h1 {
   font-family: "Oswald", sans-serif;
-  font-size: 4rem;
+  font-size: 6rem;
 }
 
 header div span {
   font-family: sans-serif;
-  color: #afafaf;
+  font-size: 1.2rem;
+  color: #c8c8c8;
   display: block;
-  margin-top: 8px;
+  margin: 25px 0 0 10px;
 }
 
 main {
@@ -257,54 +269,74 @@ aside ol li {
 
 .popupHeader ul {
   margin: 0 8px 8px 0;
+  color: white;
+  padding: 8px;
+  background-color: rgba(0, 20, 30, 0.8);
 }
 
 .popupHeader ul i {
-  margin-left: 3px;
+  margin: 3px 0;
 }
 
 .closePopup {
+  /* learned this from MerryBottles code pen*/
+  font-family: sans-serif;
+  font-size: 0.75rem;
+  background: none;
+  border: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: transparent;
+  cursor: pointer;
+  line-height: 30px;
+  outline: none;
+  overflow: hidden;
+  padding: 5px 10px;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  height: 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  top: 40px;
+  right: -20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  width: 57px;
 }
 
-.closePopup span {
+.closePopup::before, .closePopup::after {
+  background-color: white;
+  content: '';
   display: block;
-  height: 3px;
-  width: 30px;
-  background-color: #323232;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
-  grid-row: 1/2;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
-  grid-column: 1/2;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  -webkit-transform-origin: center left;
+          transform-origin: center left;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  width: 141.4214px;
+  z-index: -1;
 }
 
-.closePopup span:nth-of-type(1) {
+.closePopup::before {
+  top: 0;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  -webkit-transform-origin: center;
-          transform-origin: center;
 }
 
-.closePopup span:nth-of-type(2) {
+.closePopup::after {
+  bottom: 0;
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
-  -webkit-transform-origin: center;
-          transform-origin: center;
 }
 
-.closePopup:hover span {
-  background-color: black;
+.closePopup:hover {
+  color: #464646;
+}
+
+.closePopup:hover::before, .closePopup:hover::after {
+  height: 50px;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
 }
 
 .games {
@@ -375,6 +407,10 @@ h2 {
 
 .gameBox article ul i {
   margin-right: 3px;
+}
+
+.gameBox li {
+  display: inline;
 }
 
 .gameBox:hover {
@@ -453,6 +489,8 @@ footer {
 
 footer p {
   margin: 0 20px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 footer p a {
@@ -469,20 +507,29 @@ footer p a:hover, footer p a:focus {
 
 footer p:last-child {
   width: 100%;
-  text-align: center;
-  margin-top: 10px;
+}
+
+.scrollUp {
+  position: fixed;
+  bottom: 10px;
+  right: 7px;
+  font-size: 2.5rem;
+}
+
+.scrollUp a {
+  color: blue;
 }
 
 @media (max-width: 720px) {
   main {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-    -ms-grid-rows: 250px 1fr;
-        grid-template-rows: 250px 1fr;
+    -ms-grid-rows: 400px 1fr;
+        grid-template-rows: 400px 1fr;
   }
   main .form {
     width: 100%;
-    height: 250px;
+    height: 400px;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
     grid-column: 1/2;
@@ -497,5 +544,12 @@ footer p:last-child {
     -ms-grid-row: 2;
     -ms-grid-row-span: 1;
     grid-row: 2/3;
+  }
+  .popupBox {
+    top: 1%;
+    margin: 5%;
+    width: calc(100% - 10%);
+    height: 95%;
+    overflow: scroll;
   }
 }

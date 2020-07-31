@@ -56,21 +56,21 @@ app.gridCreation = function(){
             // If statement to check for specific platform name from  the gamePlatforms array and push an array of list items with the corresponding icon, then join them into a string
             iconPlatforms = $.map(gamePlatforms, (i) => {
                 if (i === 'mac') {
-                    return '<i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span>'
+                    return '<li><i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span></li>'
                 } else if (i === 'pc') {
-                    return '<i class="fas fa-laptop" aria-hidden="true" title="Available for PC"></i><span class="srOnly">Available for PC</span>'
+                    return '<li><i class="fas fa-laptop" aria-hidden="true" title="Available for PC"></i><span class="srOnly">Available for PC</span></li>'
                 } else if (i === 'android') {
-                    return '<i class="fab fa-android" aria-hidden="true" title="Available for Android"></i><span class="srOnly">Available for Android</span>'
+                    return '<li><i class="fab fa-android" aria-hidden="true" title="Available for Android"></i><span class="srOnly">Available for Android</span></li>'
                 } else if (i === 'playstation') {
-                    return '<i class="fab fa-playstation" aria-hidden="true" title="Available for Playstation"></i><span class="srOnly">Available for Playstation</span>'
+                    return '<li><i class="fab fa-playstation" aria-hidden="true" title="Available for Playstation"></i><span class="srOnly">Available for Playstation</span></li>'
                 } else if (i === 'xbox') {
-                    return '<i class="fab fa-xbox" aria-hidden="true" title="Available for Xbox"></i><span class="srOnly">Available for Xbox</span>'
+                    return '<li><i class="fab fa-xbox" aria-hidden="true" title="Available for Xbox"></i><span class="srOnly">Available for Xbox</span></li>'
                 } else if (i === 'linux') {
-                    return '<i class="fab fa-linux" aria-hidden="true" title="Available for Linux"></i><span class="srOnly">Available for Linux</span>'
+                    return '<li><i class="fab fa-linux" aria-hidden="true" title="Available for Linux"></i><span class="srOnly">Available for Linux</span></li>'
                 } else if (i === 'nintendo') {
-                    return '<i class="fas fa-gamepad" aria-hidden="true" title="Available for Nintendo Switch"></i><span class="srOnly">Available for Nintendo Switch</span>'
+                    return '<li><i class="fas fa-gamepad" aria-hidden="true" title="Available for Nintendo Switch"></i><span class="srOnly">Available for Nintendo Switch</span></li>'
                 } else if (i === 'ios') {
-                    return '<i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span>'
+                    return '<li><i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span></li>'
                 }
             }).join("")  
         }
@@ -84,7 +84,7 @@ app.gridCreation = function(){
                 <article>
                     <time datetime="${this.released}">${this.released}</time>
                     <p>${gameGenres}</p>
-                    <ul><li>${iconPlatforms}</li><ul>
+                    <ul>${iconPlatforms}<ul>
                 </article>
             </li>`
         );
@@ -132,21 +132,21 @@ app.gameDetailListener = function(){
                 // If statement to check for specific platform name from  the gamePlatforms array and push an array of list items with the corresponding icon, then join them into a string
                 const iconPlatforms = $.map(gamePlatforms,(i)=>{
                     if (i === 'mac') {
-                        return '<i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span>'
+                        return '<li><i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span></li>'
                     } else if (i === 'pc') {
-                        return '<i class="fas fa-laptop" aria-hidden="true" title="Available for PC"></i><span class="srOnly">Available for PC</span>'
+                        return '<li><i class="fas fa-laptop" aria-hidden="true" title="Available for PC"></i><span class="srOnly">Available for PC</span></li>'
                     } else if (i === 'android') {
-                        return '<i class="fab fa-android" aria-hidden="true" title="Available for Android"></i><span class="srOnly">Available for Android</span>'
+                        return '<li><i class="fab fa-android" aria-hidden="true" title="Available for Android"></i><span class="srOnly">Available for Android</span></li>'
                     } else if (i === 'playstation') {
-                        return '<i class="fab fa-playstation" aria-hidden="true" title="Available for Playstation"></i><span class="srOnly">Available for Playstation</span>'
+                        return '<li><i class="fab fa-playstation" aria-hidden="true" title="Available for Playstation"></i><span class="srOnly">Available for Playstation</span></li>'
                     } else if (i === 'xbox'){
-                        return '<i class="fab fa-xbox" aria-hidden="true" title="Available for Xbox"></i><span class="srOnly">Available for Xbox</span>'
+                        return '<li><i class="fab fa-xbox" aria-hidden="true" title="Available for Xbox"></i><span class="srOnly">Available for Xbox</span></li>'
                     } else if (i === 'linux') {
-                        return '<i class="fab fa-linux" aria-hidden="true" title="Available for Linux"></i><span class="srOnly">Available for Linux</span>'
+                        return '<li><i class="fab fa-linux" aria-hidden="true" title="Available for Linux"></i><span class="srOnly">Available for Linux</span></li>'
                     } else if (i === 'nintendo') {
-                        return '<i class="fas fa-gamepad" aria-hidden="true" title="Available for Nintendo Switch"></i><span class="srOnly">Available for Nintendo Switch</span>'
+                        return '<li><i class="fas fa-gamepad" aria-hidden="true" title="Available for Nintendo Switch"></i><span class="srOnly">Available for Nintendo Switch</span></li>'
                     } else if (i === 'ios') {
-                        return '<i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span>'
+                        return '<li><i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span></li>'
                     }
                 }).join("");
 
@@ -156,12 +156,12 @@ app.gameDetailListener = function(){
                 // Change the elements within the '.popupBox' with the information for the game card that was clicked
                 $popupBox.html(
                     `<div class="popupHeader" style="background-image:url(${data.background_image}">
-                        <div class="closePopup" tabindex="0">
+                        <button class="closePopup" tabindex="0">
                             <label class="srOnly">Close the popup</label>
-                            <span></span><span></span>
-                        </div>
+                            Close
+                        </button>
                         <h2>${data.name}</h2>
-                        <ul><li>${iconPlatforms}</li></ul>
+                        <ul>${iconPlatforms}</ul>
                     </div>
                     <div class="popupMeta">
                         <time datetime="${data.released}">Release Date: ${data.released}</time>

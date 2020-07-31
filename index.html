@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <a href="#mainContent" class="skipLink">Skip to main content.</a>
     <div class="gridFather">
         <header>
             <div>
@@ -18,7 +19,7 @@
             </div>
         </header>
 
-        <div class="mainWrapper">
+        <div class="mainWrapper" id="mainContent">
             <main>
                 <div class="form">
                     <h4>Filter</h4>
@@ -37,10 +38,13 @@
                     <aside>
                         <h5>How to Use</h5>
                         <ol>
-                            <li>Select a genre from the drop-down menu above.  Game cards will populate the grid to the right.</li>
+                            <li>Select a genre from the drop-down menu above. Game cards will populate the grid to the
+                                right.</li>
                             <li>Click the last card in the grid to add more cards and find more upcoming games.</li>
-                            <li>Click on a game card to show more information about that game in a popup window.  Press the "X" at the top right of the window or click outside of it to close it.</li>
-                            <li>Click the "scroll to top" button at the bottom-right of the screen to return to the top of the grid.</li>
+                            <li>Click on a game card to show more information about that game in a popup window. Press
+                                the "X" at the top right of the window or click outside of it to close it.</li>
+                            <li>Click the "scroll to top" button at the bottom-right of the screen to return to the top
+                                of the grid.</li>
                         </ol>
                     </aside>
                 </div>
@@ -50,8 +54,14 @@
     </div>
     <div class="fullScreenBackground"></div>
     <article class="popupBox"></article>
+    <div class="scrollUp">
+        <a>
+            <i class="fas fa-chevron-up"></i>
+            <label class="srOnly">Back to Top of Page</label>
+        </a>
+    </div>
     <footer>
-        <p>Design inspired by </p>
+        <p>Design inspired by <a href="https://dribbble.com/mateuszmadura">Mateusz Medura</a></p>
         <p>API provided by <a href="https://rawg.io/">RAWG Video Games Database</a></p>
         <p>Copyright &#169; <a href="https://alexcalia.com">Alex Calia</a> and <a href="https://meganrantz.io">Megan
                 Rantz</a></p>
@@ -61,4 +71,5 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
 </body>
+
 </html>
