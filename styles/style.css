@@ -108,6 +108,11 @@ html {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .gridFather {
   display: -ms-grid;
   display: grid;
@@ -118,7 +123,7 @@ html {
 }
 
 header {
-  background-color: mediumseagreen;
+  background-color: black;
   background-image: url(https://media.rawg.io/media/games/126/126fbd5ceacddc6ad16fc96e50b1265b.jpg);
   background-size: cover;
   -ms-grid-row: 1;
@@ -195,6 +200,21 @@ main .form select {
   margin: 0 25%;
   background-color: white;
   border-radius: 4px;
+  -webkit-box-shadow: 5px 5px 10px black;
+          box-shadow: 5px 5px 10px black;
+}
+
+.popupBox .popupDescription, .popupBox .popupMeta {
+  padding: 8px;
+}
+
+.popupBox .popupDescription p {
+  margin-top: 8px;
+}
+
+.popupBox .popupDescription h3 {
+  margin-top: 10px;
+  font-size: 20px;
 }
 
 .popupHeader {
@@ -343,6 +363,92 @@ h2 {
 .getMore {
   background-color: #464646;
   height: 240px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.getMore .circle {
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  background-color: grey;
+  display: block;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.getMore .circle:hover {
+  -webkit-transform: scale(1.08);
+          transform: scale(1.08);
+}
+
+.getMore .circle::before {
+  content: "+";
+  height: 90px;
+  width: 90px;
+  font-size: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
+  -webkit-box-shadow: 5px 5px 10px black;
+          box-shadow: 5px 5px 10px black;
+  border-radius: 50%;
+  font-family: courier;
+}
+
+footer {
+  background-color: #464646;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: sans-serif;
+  padding: 15px 0;
+  color: white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+footer p {
+  margin: 0 20px;
+}
+
+footer p a {
+  text-decoration: underline;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  display: inline-block;
+}
+
+footer p a:hover, footer p a:focus {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+footer p:last-child {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
 }
 
 @media (max-width: 720px) {

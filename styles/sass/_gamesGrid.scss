@@ -7,12 +7,12 @@
 }
 
 h2 {
-        color: white;
-        background-color: rgba(0,20,30,.8);
-        display: inline;
-        font-family: sans-serif;
-        padding: 8px;
-        margin: 0 8px 8px 8px;
+    color: white;
+    background-color: rgba(0,20,30,.8);
+    display: inline;
+    font-family: sans-serif;
+    padding: 8px;
+    margin: 0 8px 8px 8px;
 }
 
 .gameBox {
@@ -21,14 +21,15 @@ h2 {
     height: 240px;
     position: relative;
     transition: transform 0.2s;
+
     div {
         display: flex;
         align-items: flex-end;
         height: 175px;
         border-radius: 4px 4px 0 0;
-        background-size: cover;
-       
+        background-size: cover;  
     }
+
     article {
         padding: 5px 8px;
         font-family: sans-serif;
@@ -57,4 +58,35 @@ h2 {
 .getMore {
     background-color: rgb(70, 70, 70);
     height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .circle {
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+        background-color: grey;
+        display: block;
+        transition-duration: 0.3s;
+
+        &:hover {
+            transform: scale(1.08);
+        }
+
+        &::before {
+            content: "+";
+            height:90px;
+            width: 90px;
+            font-size:90px;
+            display:flex;
+            flex-direction:row;
+            align-items:center;
+            justify-content:center;
+            color:white;
+            box-shadow: 5px 5px 10px black;
+            border-radius: 50%;
+            font-family:courier;
+        }
+    }
 }

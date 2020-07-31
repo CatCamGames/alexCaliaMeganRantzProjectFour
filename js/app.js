@@ -4,8 +4,8 @@
 // If they change genre, there will be a new API call for that genre
 // Return results to the grid
 // Create a dropdown option for All Games to bring back the initial general list of games to the grid
-// Declare namespace
 
+// Declare namespace
 const app = {}
 app.selectionGenre = "";
 app.currentDate = new Date();
@@ -16,7 +16,7 @@ app.urlGen = `https://api.rawg.io/api/games?dates=${app.todaysDate},${app.future
 app.url = app.urlGen;
 app.pageNum = 1;
 
-// API Calls
+// API Call
 app.apiGeneral = function(i){
     $.ajax({
         url: i,
@@ -27,22 +27,23 @@ app.apiGeneral = function(i){
         },
         data: {
             page: app.pageNum,
-            page_size: 8
+            page_size: 7
         }
     }).then((data)=>{
         app.games = data.results;
         app.gridCreation();
-       
     });
 }
 
-app.gridCreation = function(){
-    
+app.gridCreation = function(){ 
 //results array comes in and then we for each them into template literals appended the games ul.  
     $.each(app.games, function(){
         let iconPlatforms = [];
-        if (this.parent_platforms !== undefined) {  
+        // Error handling in case some games don't have platforms defined
+        if (this.parent_platforms !== undefined) {
+            // Grab the platforms from the object and push to a new array
             const gamePlatforms = this.parent_platforms.map((i) => { return i.platform.slug });
+            // If statement to check for specific platform name from  the gamePlatforms array and push an array of list items with the corresponding icon, then join them into a string
             iconPlatforms = $.map(gamePlatforms, (i) => {
                 if (i === 'mac') {
                     return '<i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span>'
@@ -78,9 +79,10 @@ app.gridCreation = function(){
             </li>`
         );
     });
+    // Add a card at the end of the grid that will be used to pull more games from the API when clicked
     $('.games').append(`<div class="gameBox getMore">
         <label class="srOnly">Press to get more games</label>
-        <span></span><span></span>
+        <span class="circle"></span>
         </div>`)
 }
 //
@@ -89,6 +91,7 @@ app.selectionListener = function() {
     $('.genreSelect').on('change', function () {
         $('.games').empty();
         app.pageNum = 1
+        // If statement to determine if option selected is 'allGames' or anything else, update the API url on change and populate the grid with games
         if ($(this).val() !== 'allGames') {
             app.url = `${app.urlGen}&genres=${$(this).val()}`;
             app.apiGeneral(app.url);
@@ -101,8 +104,8 @@ app.selectionListener = function() {
 
 //Event listener for the pop-up window for game details
 app.gameDetailListener = function(){
+    // On click, take the 'value' of the <li> and add it to the API call to get data on the specific game
     $('ul').on('click', 'li', function(){
-        let gameDescription = ""
         $.ajax({
             url: `https://api.rawg.io/api/games/${$(this).attr("value")}`,
             method: 'GET',
@@ -114,7 +117,9 @@ app.gameDetailListener = function(){
             createsCard(data);
         });
             function createsCard (data){
+                // Grab the platforms from the object and push to a new array
                 const gamePlatforms = data.parent_platforms.map((i)=> {return i.platform.slug});
+                // If statement to check for specific platform name from  the gamePlatforms array and push an array of list items with the corresponding icon, then join them into a string
                 const iconPlatforms = $.map(gamePlatforms,(i)=>{
                     if (i === 'mac') {
                         return '<i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span>'
@@ -134,7 +139,11 @@ app.gameDetailListener = function(){
                         return '<i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span>'
                     }
                 }).join("");
+
+                // Iterate over the 'genres' property, push them to an array and join them into a string with a comma between
                 const gameGenres = data.genres.map((i) => { return i.name }).join(", ");
+
+                // Change the elements within the '.popupBox' with the information for the game card that was clicked
                 $('.popupBox').html(
                     `<div class="popupHeader" style="background-image:url(${data.background_image}">
                         <div class="closePopup">
@@ -145,14 +154,15 @@ app.gameDetailListener = function(){
                         <ul><li>${iconPlatforms}</li></ul>
                     </div>
                     <div class="popupMeta">
-                        <time datetime="${data.released}">${data.released}</time>
-                        <p>${gameGenres}</p>
+                        <time datetime="${data.released}">Release Date: ${data.released}</time>
+                        <p>Genre(s): ${gameGenres}</p>
                     </div>
                     <div class="popupDescription">
-                    ${data.description}
+                        ${data.description}
                     </div>
                     `
                 ).fadeIn(300);
+                // Fade in the opaque background to make the popup box stand out more
                 $('.fullScreenBackground').fadeIn(300);
             
             }
@@ -171,8 +181,13 @@ app.getMoreListener = function() {
 // Event listener for closing the popup window
 app.closePopupBox = function() {
     $('article').on('click', '.closePopup', function() {
-        $('.popupBox').fadeOut(1000);
+        $('.popupBox').fadeOut(400);
         $('.fullScreenBackground').fadeOut(300);   
+    })
+
+    $('.fullScreenBackground').on('click', function(){
+        $('.popupBox').fadeOut(400);
+        $('.fullScreenBackground').fadeOut(300); 
     })
 }
 
@@ -183,7 +198,8 @@ app.init = function() {
     app.getMoreListener();
     app.apiGeneral(app.urlGen);
     app.closePopupBox();
-    $('.fullScreenBackground').hide();  
+    $('.fullScreenBackground').hide();
+    $('article').hide();
 }
 
 // Document ready
