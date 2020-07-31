@@ -88,41 +88,65 @@ aside {
     align-items: flex-end;
     justify-content: space-between;
     ul {
-        margin: 0 8px 8px 0;
+        margin: 0 8px 8px 0; 
+        color: white;
+        padding: 8px;
+        background-color: rgba(0,20,30,.8);
         i {
-            margin-left: 3px;
+            margin: 3px 0;
         }
     }
 }
 
-.closePopup {
+.closePopup { /* learned this from MerryBottles code pen*/ 
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    color: transparent;
+    cursor: pointer;  
+    line-height: 30px;
+    outline: none;
+    overflow: hidden;
+    padding: 5px 10px;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    span {
+    top: 40px;
+    right: -20px;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease-in;
+    width: 57px;
+    &::before,
+    &::after {
+        background-color: white;
+        content: '';
         display: block;
-        height: 3px;
-        width: 30px;
-        background-color: rgb(50,50,50);
-        grid-row: 1/2;
-        grid-column:1/2;
+        height: 4px;
+        left: 0;
+        position: absolute;
+        transform-origin: center left;
+        transition: all 0.2s ease-in;
+        width: 141.4214px;
+        z-index: -1;
+    }
     
-    }
-    span:nth-of-type(1){
+    &::before {
+        top: 0;
         transform: rotate(45deg);
-        transform-origin: center;
     }
-    span:nth-of-type(2){
+    
+    &::after {
+        bottom: 0;
         transform: rotate(-45deg);
-        transform-origin: center;
     }
-}
-
-.closePopup:hover {
-    span {
-        background-color: black;      
+    
+    &:hover {
+        color:rgb(70,70,70)
+    }
+    
+    &:hover::before,
+    &:hover::after {
+        height: 50px;
+        transform: rotate(0deg);
     }
 }

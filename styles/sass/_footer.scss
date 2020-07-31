@@ -9,7 +9,8 @@ footer {
 
     p {
         margin: 0 20px;
-
+        text-align: center;
+        margin-top: 10px;
         a {
             text-decoration: underline;
             transition-duration: 0.3s;
@@ -20,11 +21,7 @@ footer {
             }
         }
     }
-
-
     p:last-child {
         width: 100%;
-        text-align: center;
-        margin-top: 10px;
     }
 }
