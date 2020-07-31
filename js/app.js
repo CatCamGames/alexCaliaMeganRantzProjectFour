@@ -23,7 +23,7 @@ $games = $('.games');
 $genreSelect = $('.genreSelect');
 $popupBox = $('.popupBox');
 $fullScreenBackground = $('.fullScreenBackground');
-
+$scrollUp = $('.scrollUp');
 
 
 // API Call
@@ -228,6 +228,7 @@ app.init = function() {
     app.closePopupBox();
     $fullScreenBackground.hide();
     $article.hide();
+    $scrollUp.hide();
     app.enterListenerGameCard();
     app.enterGetMoreCard();
 }

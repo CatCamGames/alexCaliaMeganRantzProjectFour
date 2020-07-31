@@ -225,6 +225,8 @@ aside ol li {
   margin-top: 10px;
   letter-spacing: 1px;
   line-height: 1.1;
+  font-family: sans-serif;
+  font-weight: 300;
 }
 
 .popupBox {
