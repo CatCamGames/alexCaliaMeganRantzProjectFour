@@ -23,6 +23,7 @@ $games = $('.games');
 $genreSelect = $('.genreSelect');
 $popupBox = $('.popupBox');
 $fullScreenBackground = $('.fullScreenBackground');
+$dialog = $('dialog');
 
 
 
@@ -190,7 +191,7 @@ app.getMoreListener = function() {
 
 // Event listener for closing the popup window
 app.closePopupBox = function() {
-    $article.on('click', '.closePopup', function() {
+    $dialog.on('click', '.closePopup', function() {
         $popupBox.fadeOut(400);
         $fullScreenBackground.fadeOut(300);   
     })
@@ -227,7 +228,7 @@ app.init = function() {
     app.apiGeneral(app.urlGen);
     app.closePopupBox();
     $fullScreenBackground.hide();
-    $article.hide();
+    $dialog.hide();
     app.enterListenerGameCard();
     app.enterGetMoreCard();
 }
