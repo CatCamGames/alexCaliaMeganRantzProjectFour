@@ -222,9 +222,19 @@ app.enterGetMoreCard = () => {
 }
 
 app.scrollUpEnter = function () {
-    if ($games.scrollTop = 0){
-        $scrollUp.fadeIn(200);
-    } 
+    $(window).scroll(function(){
+        if($(this).scrollTop() > $games.offset().top){
+            $scrollUp.fadeIn(100);
+        } else {
+            $scrollUp.fadeOut(100);
+        }
+    })
+}
+
+app.scrollUpScrolling = function (){
+    $scrollUp.on('click', function(){
+        $('html, body').animate({scrollTop: 0}, 300);
+    })
 }
 
 // Init
@@ -236,10 +246,12 @@ app.init = function() {
     app.closePopupBox();
     $fullScreenBackground.hide();
     $article.hide();
-    $scrollUp.hide();
     $dialog.hide();
+    $scrollUp.hide();
     app.enterListenerGameCard();
     app.enterGetMoreCard();
+    app.scrollUpEnter();
+    app.scrollUpScrolling();
 }
 
 // Document ready
