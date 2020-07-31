@@ -1,0 +1,30 @@
+footer {
+    background-color: rgb(70,70,70);
+    display: flex;
+    font-family: sans-serif;
+    padding: 15px 0;
+    color: white;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    p {
+        margin: 0 20px;
+
+        a {
+            text-decoration: underline;
+            transition-duration: 0.3s;
+            display: inline-block;
+
+            &:hover, &:focus {
+                transform: scale(1.01);
+            }
+        }
+    }
+
+
+    p:last-child {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+}
