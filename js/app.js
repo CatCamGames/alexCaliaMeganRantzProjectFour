@@ -219,6 +219,12 @@ app.enterGetMoreCard = () => {
     })
 }
 
+app.scrollUpEnter = function () {
+    if ($games.scrollTop = 0){
+        $scrollUp.fadeIn(200);
+    } 
+}
+
 // Init
 app.init = function() {
     app.selectionListener();
