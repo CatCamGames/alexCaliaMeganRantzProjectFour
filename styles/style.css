@@ -125,8 +125,8 @@ a {
 .gridFather {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 70vh 75px 1fr;
-      grid-template-rows: 70vh 75px 1fr;
+  -ms-grid-rows: 65vh 75px 1fr;
+      grid-template-rows: 65vh 75px 1fr;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
 }
@@ -156,7 +156,7 @@ header div h1 {
 }
 
 header div span {
-  font-family: sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 1.2rem;
   color: #c8c8c8;
   display: block;
@@ -168,18 +168,16 @@ main {
   display: grid;
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
-  -ms-grid-columns: 250px 1fr;
-      grid-template-columns: 250px 1fr;
+  -ms-grid-columns: 270px 1fr;
+      grid-template-columns: 270px 1fr;
   grid-gap: 15px;
   margin-bottom: 100px;
 }
 
 main .form {
-  width: 250px;
+  width: 270px;
   height: calc(240px * 2 + 15px);
-  background-color: #464646;
-  -webkit-box-shadow: 5px 5px 10px slategray;
-          box-shadow: 5px 5px 10px slategray;
+  background-color: #141c29;
   border-radius: 4px;
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
@@ -195,7 +193,7 @@ main .form h4 {
 }
 
 main .form label {
-  font-family: sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   display: block;
 }
 
@@ -210,11 +208,6 @@ aside {
   font-size: 0.8rem;
 }
 
-aside h5 {
-  font-family: "Oswald", sans-serif;
-  font-size: 1rem;
-}
-
 aside ol {
   list-style-type: decimal;
   margin-top: 5px;
@@ -225,30 +218,41 @@ aside ol li {
   margin-top: 10px;
   letter-spacing: 1px;
   line-height: 1.1;
-  font-family: sans-serif;
   font-weight: 300;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+h5 {
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
 }
 
 .popupBox {
   position: fixed;
   top: 100px;
-  width: calc(100% - 50%);
-  margin: 0 25%;
+  width: calc(100% - 40%);
+  margin: 0 20%;
   background-color: white;
   border-radius: 4px;
   -webkit-box-shadow: 5px 5px 10px black;
           box-shadow: 5px 5px 10px black;
+  overflow: scroll;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .popupBox .popupDescription, .popupBox .popupMeta {
   padding: 8px;
 }
 
-.popupBox .popupDescription p {
-  margin-top: 8px;
+.popupDescription p {
+  margin-top: 10px;
 }
 
-.popupBox .popupDescription h3 {
+.popupDescription br {
+  line-height: 1.5rem;
+}
+
+.popupDescription h3 {
   margin-top: 10px;
   font-size: 20px;
 }
@@ -273,72 +277,36 @@ aside ol li {
   margin: 0 8px 8px 0;
   color: white;
   padding: 8px;
-  background-color: rgba(0, 20, 30, 0.8);
+  background-color: rgba(20, 28, 41, 0.85);
 }
 
-.popupHeader ul i {
-  margin: 3px 0;
+.popupHeader ul li {
+  display: inline;
+}
+
+.popupHeader ul li i {
+  margin: 0 3px;
 }
 
 .closePopup {
-  /* learned this from MerryBottles code pen*/
-  font-family: sans-serif;
-  font-size: 0.75rem;
-  background: none;
-  border: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  color: transparent;
-  cursor: pointer;
-  line-height: 30px;
-  outline: none;
-  overflow: hidden;
-  padding: 5px 10px;
+  background-color: rgba(20, 28, 41, 0.85);
+  border: none;
   position: absolute;
-  top: 40px;
-  right: -20px;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-  width: 57px;
+  width: 36px;
+  height: 36px;
+  top: 8px;
+  right: 8px;
 }
 
-.closePopup::before, .closePopup::after {
-  background-color: white;
-  content: '';
-  display: block;
-  height: 4px;
-  left: 0;
-  position: absolute;
-  -webkit-transform-origin: center left;
-          transform-origin: center left;
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-  width: 141.4214px;
-  z-index: -1;
+.closePopup i {
+  font-size: 1.5rem;
+  color: white;
 }
 
-.closePopup::before {
-  top: 0;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.closePopup::after {
-  bottom: 0;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.closePopup:hover {
-  color: #464646;
-}
-
-.closePopup:hover::before, .closePopup:hover::after {
-  height: 50px;
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
+.closePopup:hover, .closePopup:focus {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  background-color: #141c29;
 }
 
 .games {
@@ -356,9 +324,9 @@ aside ol li {
 
 h2 {
   color: white;
-  background-color: rgba(0, 20, 30, 0.8);
+  background-color: rgba(20, 28, 41, 0.85);
   display: inline;
-  font-family: sans-serif;
+  font-family: "Oswald", sans-serif;
   padding: 8px;
   margin: 0 8px 8px 8px;
 }
@@ -389,12 +357,8 @@ h2 {
 
 .gameBox article {
   padding: 5px 8px;
-  font-family: sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 0.8rem;
-}
-
-.gameBox article time {
-  color: #464646;
 }
 
 .gameBox article p {
@@ -411,6 +375,10 @@ h2 {
   margin-right: 3px;
 }
 
+time {
+  color: #464646;
+}
+
 .gameBox li {
   display: inline;
 }
@@ -421,7 +389,7 @@ h2 {
 }
 
 .getMore {
-  background-color: #464646;
+  background-color: #141c29;
   height: 240px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -436,12 +404,23 @@ h2 {
 
 .getMore .circle {
   border-radius: 50%;
-  width: 90px;
-  height: 90px;
-  background-color: grey;
+  width: 170px;
+  height: 170px;
+  border: 5px solid #5a7298;
   display: block;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-shadow: 5px 5px 10px black;
+          box-shadow: 5px 5px 10px black;
 }
 
 .getMore .circle:hover {
@@ -451,9 +430,7 @@ h2 {
 
 .getMore .circle::before {
   content: "+";
-  height: 90px;
-  width: 90px;
-  font-size: 90px;
+  font-size: 8rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -467,19 +444,17 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  color: white;
-  -webkit-box-shadow: 5px 5px 10px black;
-          box-shadow: 5px 5px 10px black;
+  color: #5a7298;
   border-radius: 50%;
-  font-family: courier;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 footer {
-  background-color: #464646;
+  background-color: #141c29;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-family: sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   padding: 15px 0;
   color: white;
   -webkit-box-pack: center;
@@ -516,7 +491,7 @@ footer p:last-child {
   bottom: 10px;
   right: 7px;
   font-size: 2rem;
-  background-color: rgba(0, 20, 30, 0.8);
+  background-color: rgba(20, 28, 41, 0.85);
   border: none;
 }
 
@@ -528,12 +503,12 @@ footer p:last-child {
   main {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-    -ms-grid-rows: 400px 1fr;
-        grid-template-rows: 400px 1fr;
+    -ms-grid-rows: 450px 1fr;
+        grid-template-rows: 450px 1fr;
   }
   main .form {
     width: 100%;
-    height: 400px;
+    height: 450px;
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
     grid-column: 1/2;
@@ -554,6 +529,14 @@ footer p:last-child {
     margin: 5%;
     width: calc(100% - 10%);
     height: 95%;
-    overflow: scroll;
+  }
+}
+
+@media (max-width: 1250px) {
+  .popupBox {
+    top: 3%;
+    margin: 7%;
+    width: calc(100% - 14%);
+    height: 95%;
   }
 }

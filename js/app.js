@@ -26,7 +26,26 @@ $fullScreenBackground = $('.fullScreenBackground');
 $scrollUp = $('.scrollUp');
 $dialog = $('dialog');
 
-
+ // If statement to check for specific platform name from  the gamePlatforms array and push an array of list items with the corresponding icon, then join them into a string
+app.findIfPlatformsIcons = function(i) {
+    if (i === 'mac') {
+        return '<li><i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span></li>'
+    } else if (i === 'pc') {
+        return '<li><i class="fas fa-laptop" aria-hidden="true" title="Available for PC"></i><span class="srOnly">Available for PC</span></li>'
+    } else if (i === 'android') {
+        return '<li><i class="fab fa-android" aria-hidden="true" title="Available for Android"></i><span class="srOnly">Available for Android</span></li>'
+    } else if (i === 'playstation') {
+        return '<li><i class="fab fa-playstation" aria-hidden="true" title="Available for Playstation"></i><span class="srOnly">Available for Playstation</span></li>'
+    } else if (i === 'xbox') {
+        return '<li><i class="fab fa-xbox" aria-hidden="true" title="Available for Xbox"></i><span class="srOnly">Available for Xbox</span></li>'
+    } else if (i === 'linux') {
+        return '<li><i class="fab fa-linux" aria-hidden="true" title="Available for Linux"></i><span class="srOnly">Available for Linux</span></li>'
+    } else if (i === 'nintendo') {
+        return '<li><i class="fas fa-gamepad" aria-hidden="true" title="Available for Nintendo Switch"></i><span class="srOnly">Available for Nintendo Switch</span></li>'
+    } else if (i === 'ios') {
+        return '<li><i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span></li>'
+    }
+}
 
 // API Call
 app.apiGeneral = function(i){
@@ -55,28 +74,9 @@ app.gridCreation = function(){
         if (this.parent_platforms !== undefined) {
             // Grab the platforms from the object and push to a new array
             const gamePlatforms = this.parent_platforms.map((i) => i.platform.slug);
-            // If statement to check for specific platform name from  the gamePlatforms array and push an array of list items with the corresponding icon, then join them into a string
-            iconPlatforms = $.map(gamePlatforms, (i) => {
-                if (i === 'mac') {
-                    return '<li><i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span></li>'
-                } else if (i === 'pc') {
-                    return '<li><i class="fas fa-laptop" aria-hidden="true" title="Available for PC"></i><span class="srOnly">Available for PC</span></li>'
-                } else if (i === 'android') {
-                    return '<li><i class="fab fa-android" aria-hidden="true" title="Available for Android"></i><span class="srOnly">Available for Android</span></li>'
-                } else if (i === 'playstation') {
-                    return '<li><i class="fab fa-playstation" aria-hidden="true" title="Available for Playstation"></i><span class="srOnly">Available for Playstation</span></li>'
-                } else if (i === 'xbox') {
-                    return '<li><i class="fab fa-xbox" aria-hidden="true" title="Available for Xbox"></i><span class="srOnly">Available for Xbox</span></li>'
-                } else if (i === 'linux') {
-                    return '<li><i class="fab fa-linux" aria-hidden="true" title="Available for Linux"></i><span class="srOnly">Available for Linux</span></li>'
-                } else if (i === 'nintendo') {
-                    return '<li><i class="fas fa-gamepad" aria-hidden="true" title="Available for Nintendo Switch"></i><span class="srOnly">Available for Nintendo Switch</span></li>'
-                } else if (i === 'ios') {
-                    return '<li><i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span></li>'
-                }
-            }).join("")  
+            //calling the if statement to return an array of platform icons instead of platform names
+            iconPlatforms = gamePlatforms.map(app.findIfPlatformsIcons).join("") 
         }
-
         const gameGenres = this.genres.map((i)=> i.name).join(", ");
         $games.append(
             `<li class="gameBox" value="${this.id}" tabindex="0">
@@ -131,27 +131,8 @@ app.gameDetailListener = function(){
             function createsCard (data){
                 // Grab the platforms from the object and push to a new array
                 const gamePlatforms = data.parent_platforms.map((i)=> i.platform.slug);
-                // If statement to check for specific platform name from  the gamePlatforms array and push an array of list items with the corresponding icon, then join them into a string
-                const iconPlatforms = $.map(gamePlatforms,(i)=>{
-                    if (i === 'mac') {
-                        return '<li><i class="fab fa-apple" aria-hidden="true" title="Available for Mac"></i><span class="srOnly">Available for Mac</span></li>'
-                    } else if (i === 'pc') {
-                        return '<li><i class="fas fa-laptop" aria-hidden="true" title="Available for PC"></i><span class="srOnly">Available for PC</span></li>'
-                    } else if (i === 'android') {
-                        return '<li><i class="fab fa-android" aria-hidden="true" title="Available for Android"></i><span class="srOnly">Available for Android</span></li>'
-                    } else if (i === 'playstation') {
-                        return '<li><i class="fab fa-playstation" aria-hidden="true" title="Available for Playstation"></i><span class="srOnly">Available for Playstation</span></li>'
-                    } else if (i === 'xbox'){
-                        return '<li><i class="fab fa-xbox" aria-hidden="true" title="Available for Xbox"></i><span class="srOnly">Available for Xbox</span></li>'
-                    } else if (i === 'linux') {
-                        return '<li><i class="fab fa-linux" aria-hidden="true" title="Available for Linux"></i><span class="srOnly">Available for Linux</span></li>'
-                    } else if (i === 'nintendo') {
-                        return '<li><i class="fas fa-gamepad" aria-hidden="true" title="Available for Nintendo Switch"></i><span class="srOnly">Available for Nintendo Switch</span></li>'
-                    } else if (i === 'ios') {
-                        return '<li><i class="fab fa-app-store-ios" aria-hidden="true" title="Available for iPhone"></i><span class="srOnly">Available for iPhone</span></li>'
-                    }
-                }).join("");
-
+                //calling the if statement to return an array of platform icons instead of platform names
+                const iconPlatforms = gamePlatforms.map(app.findIfPlatformsIcons).join("") 
                 // Iterate over the 'genres' property, push them to an array and join them into a string with a comma between
                 const gameGenres = data.genres.map((i) => i.name).join(", ");
 
@@ -160,7 +141,7 @@ app.gameDetailListener = function(){
                     `<div class="popupHeader" style="background-image:url(${data.background_image}">
                         <button class="closePopup" tabindex="0">
                             <label class="srOnly">Close the popup</label>
-                            Close
+                            <i class="fas fa-times"></i>
                         </button>
                         <h2>${data.name}</h2>
                         <ul>${iconPlatforms}</ul>
@@ -176,7 +157,7 @@ app.gameDetailListener = function(){
                 ).fadeIn(300);
                 // Fade in the opaque background to make the popup box stand out more
                 $fullScreenBackground.fadeIn(300);
-            
+                $scrollUp.fadeOut(300);
             }
     });
 }
@@ -192,14 +173,17 @@ app.getMoreListener = function() {
 
 // Event listener for closing the popup window
 app.closePopupBox = function() {
-    $dialog.on('click', '.closePopup', function() {
+    const fadingOut = function (){
         $popupBox.fadeOut(400);
-        $fullScreenBackground.fadeOut(300);   
+        $fullScreenBackground.fadeOut(300);
+        app.scrollUpEnter();
+    }
+    $dialog.on('click', '.closePopup', function() {
+        fadingOut();
     })
 
     $fullScreenBackground.on('click', function(){
-        $popupBox.fadeOut(400);
-        $fullScreenBackground.fadeOut(300); 
+        fadingOut();
     })
 }
 
