@@ -1,6 +1,6 @@
 .gridFather {
     display:grid;
-    grid-template-rows: 70vh 75px 1fr;
+    grid-template-rows: 65vh 75px 1fr;
     grid-template-columns: 1fr;
 }
 
@@ -20,7 +20,7 @@ header {
             font-size: 6rem;
         }
         span {
-            font-family: sans-serif;
+            font-family: $copyFont;
             font-size: 1.2rem;
             color: rgb(200, 200, 200);
             display: block;

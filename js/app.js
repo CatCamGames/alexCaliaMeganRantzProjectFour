@@ -160,7 +160,7 @@ app.gameDetailListener = function(){
                     `<div class="popupHeader" style="background-image:url(${data.background_image}">
                         <button class="closePopup" tabindex="0">
                             <label class="srOnly">Close the popup</label>
-                            Close
+                            <i class="fas fa-times"></i>
                         </button>
                         <h2>${data.name}</h2>
                         <ul>${iconPlatforms}</ul>
@@ -176,7 +176,7 @@ app.gameDetailListener = function(){
                 ).fadeIn(300);
                 // Fade in the opaque background to make the popup box stand out more
                 $fullScreenBackground.fadeIn(300);
-            
+                $scrollUp.fadeOut(300);
             }
     });
 }
@@ -192,14 +192,17 @@ app.getMoreListener = function() {
 
 // Event listener for closing the popup window
 app.closePopupBox = function() {
-    $dialog.on('click', '.closePopup', function() {
+    const fadingOut = function (){
         $popupBox.fadeOut(400);
-        $fullScreenBackground.fadeOut(300);   
+        $fullScreenBackground.fadeOut(300);
+        app.scrollUpEnter();
+    }
+    $dialog.on('click', '.closePopup', function() {
+        fadingOut();
     })
 
     $fullScreenBackground.on('click', function(){
-        $popupBox.fadeOut(400);
-        $fullScreenBackground.fadeOut(300); 
+        fadingOut();
     })
 }
 

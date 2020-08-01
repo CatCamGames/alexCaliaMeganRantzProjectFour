@@ -8,9 +8,9 @@
 
 h2 {
     color: white;
-    background-color: rgba(0,20,30,.8);
+    background-color: $primeColorTransparent;
     display: inline;
-    font-family: sans-serif;
+    font-family: $titleFont;
     padding: 8px;
     margin: 0 8px 8px 8px;
 }
@@ -32,11 +32,9 @@ h2 {
 
     article {
         padding: 5px 8px;
-        font-family: sans-serif;
+        font-family: $copyFont;
         font-size: 0.8rem;
-        time {
-            color: rgb(70,70,70);
-        }
+        
         p{
             margin-top: 3px;
         }
@@ -51,6 +49,10 @@ h2 {
     }
 }
 
+time {
+            color: rgb(70,70,70);
+}
+
 .gameBox li {
     display: inline;
 }
@@ -60,7 +62,7 @@ h2 {
 }
 
 .getMore {
-    background-color: rgb(70, 70, 70);
+    background-color: $primeColorOpaque;
     height: 240px;
     display: flex;
     justify-content: center;
@@ -68,11 +70,15 @@ h2 {
 
     .circle {
         border-radius: 50%;
-        width: 90px;
-        height: 90px;
-        background-color: grey;
+        width: 170px;
+        height: 170px;
+        border: 5px solid rgb(90,114,152);
         display: block;
         transition-duration: 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 5px 5px 10px black;
 
         &:hover {
             transform: scale(1.08);
@@ -80,17 +86,14 @@ h2 {
 
         &::before {
             content: "+";
-            height:90px;
-            width: 90px;
-            font-size:90px;
+            font-size: 8rem;
             display:flex;
             flex-direction:row;
             align-items:center;
             justify-content:center;
-            color:white;
-            box-shadow: 5px 5px 10px black;
+            color: rgb(90,114,152);
             border-radius: 50%;
-            font-family:courier;
+            font-family: $copyFont;
         }
     }
 }
