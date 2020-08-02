@@ -406,7 +406,7 @@ time {
   border-radius: 50%;
   width: 170px;
   height: 170px;
-  border: 5px solid #5a7298;
+  border: 5px solid #6e8ab8;
   display: block;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
@@ -419,8 +419,6 @@ time {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-shadow: 5px 5px 10px black;
-          box-shadow: 5px 5px 10px black;
 }
 
 .getMore .circle:hover {
@@ -444,7 +442,7 @@ time {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  color: #5a7298;
+  color: #6e8ab8;
   border-radius: 50%;
   font-family: "Source Sans Pro", sans-serif;
 }
@@ -499,7 +497,7 @@ footer p:last-child {
   color: white;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 750px) {
   main {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
