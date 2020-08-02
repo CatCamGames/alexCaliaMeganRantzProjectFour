@@ -55,7 +55,7 @@ aside {
 h5 {
         font-family: $titleFont;
         font-size: 1rem;
-}
+    }
 
 .popupBox {
     position: fixed;
@@ -65,11 +65,11 @@ h5 {
     background-color: white;
     border-radius: 4px;
     box-shadow: 5px 5px 10px black;
-    overflow: scroll;
+    overflow: auto;
     font-family: $copyFont;
 
     .popupDescription, .popupMeta {
-        padding: 8px;
+        padding: 10px;
     }
 }
 
@@ -87,7 +87,6 @@ h5 {
         font-size: 20px;
     }
 }
-
 
 .popupHeader {
     height: 200px;
@@ -113,8 +112,6 @@ h5 {
         }
     }
 }
-
-
 
 .closePopup {
     background-color: $primeColorTransparent;
