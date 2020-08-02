@@ -17,14 +17,12 @@ app.url = app.urlGen;
 app.pageNum = 1;
 
 // JQuery cache
-$ul = $('ul');
-$article = $('article');
-$games = $('.games');
-$genreSelect = $('.genreSelect');
-$popupBox = $('.popupBox');
-$fullScreenBackground = $('.fullScreenBackground');
-$scrollUp = $('.scrollUp');
-$dialog = $('dialog');
+app.$games = $('.games');
+app.$genreSelect = $('.genreSelect');
+app.$popupBox = $('.popupBox');
+app.$fullScreenBackground = $('.fullScreenBackground');
+app.$scrollUp = $('.scrollUp');
+app.$closePopup= $('.closePopup');
 
  // If statement to check for specific platform name from  the gamePlatforms array and push an array of list items with the corresponding icon, then join them into a string
 app.findIfPlatformsIcons = function(i) {
@@ -78,7 +76,7 @@ app.gridCreation = function(){
             iconPlatforms = gamePlatforms.map(app.findIfPlatformsIcons).join("") 
         }
         const gameGenres = this.genres.map((i)=> i.name).join(", ");
-        $games.append(
+        app.$games.append(
             `<li class="gameBox" value="${this.id}" tabindex="0">
                 <div style="background-image:url(${this.background_image}")>
                     <h2>${this.name}</h2>
@@ -92,16 +90,50 @@ app.gridCreation = function(){
         );
     });
     // Add a card at the end of the grid that will be used to pull more games from the API when clicked
-    $games.append(`<div class="gameBox getMore" tabindex="0">
+    app.$games.append(`<div class="gameBox getMore" tabindex="0">
         <label class="srOnly">Press to get more games</label>
         <span class="circle"></span>
         </div>`)
 }
+
+// Populate the dialog popup when one of the cards is clicked
+app.gamePopup = function(data) {
+    // Grab the platforms from the object and push to a new array
+    const gamePlatforms = data.parent_platforms.map((i)=> i.platform.slug);
+    //calling the if statement to return an array of platform icons instead of platform names
+    const iconPlatforms = gamePlatforms.map(app.findIfPlatformsIcons).join("") 
+    // Iterate over the 'genres' property, push them to an array and join them into a string with a comma between
+    const gameGenres = data.genres.map((i) => i.name).join(", ");
+
+    // Change the elements within the '.popupBox' with the information for the game card that was clicked
+    app.$popupBox.html(
+        `<div class="popupHeader" style="background-image:url(${data.background_image}">
+            <button class="closePopup" autofocus>
+                <label class="srOnly">Close the popup</label>
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>${data.name}</h2>
+            <ul>${iconPlatforms}</ul>
+        </div>
+        <div class="popupMeta">
+            <time datetime="${data.released}">Release Date: ${data.released}</time>
+            <p>Genre(s): ${gameGenres}</p>
+        </div>
+        <div class="popupDescription">
+            ${data.description}
+        </div>
+        `
+    ).fadeIn(300);
+    // Fade in the opaque background to make the popup box stand out more
+    app.$fullScreenBackground.fadeIn(300);
+    app.$scrollUp.fadeOut(300);
+}
+
 //
 // Event Listeners looking for genre selection in form
 app.selectionListener = function() {
-    $genreSelect.on('change', function () {
-        $games.empty();
+    app.$genreSelect.on('change', function () {
+        app.$games.empty();
         app.pageNum = 1
         // If statement to determine if option selected is 'allGames' or anything else, update the API url on change and populate the grid with games
         if ($(this).val() !== 'allGames') {
@@ -117,7 +149,7 @@ app.selectionListener = function() {
 //Event listener for the pop-up window for game details
 app.gameDetailListener = function(){
     // On click, take the 'value' of the <li> and add it to the API call to get data on the specific game
-    $ul.on('click', 'li', function(){
+    app.$games.on('click', 'li', function(){
         $.ajax({
             url: `https://api.rawg.io/api/games/${$(this).attr("value")}`,
             method: 'GET',
@@ -126,45 +158,14 @@ app.gameDetailListener = function(){
             'User-Agent': 'Web Dev Bootcamp Project'
             },
         }).then(function(data){
-            createsCard(data);
-        });
-            function createsCard (data){
-                // Grab the platforms from the object and push to a new array
-                const gamePlatforms = data.parent_platforms.map((i)=> i.platform.slug);
-                //calling the if statement to return an array of platform icons instead of platform names
-                const iconPlatforms = gamePlatforms.map(app.findIfPlatformsIcons).join("") 
-                // Iterate over the 'genres' property, push them to an array and join them into a string with a comma between
-                const gameGenres = data.genres.map((i) => i.name).join(", ");
-
-                // Change the elements within the '.popupBox' with the information for the game card that was clicked
-                $popupBox.html(
-                    `<div class="popupHeader" style="background-image:url(${data.background_image}">
-                        <button class="closePopup" tabindex="0">
-                            <label class="srOnly">Close the popup</label>
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <h2>${data.name}</h2>
-                        <ul>${iconPlatforms}</ul>
-                    </div>
-                    <div class="popupMeta">
-                        <time datetime="${data.released}">Release Date: ${data.released}</time>
-                        <p>Genre(s): ${gameGenres}</p>
-                    </div>
-                    <div class="popupDescription">
-                        ${data.description}
-                    </div>
-                    `
-                ).fadeIn(300);
-                // Fade in the opaque background to make the popup box stand out more
-                $fullScreenBackground.fadeIn(300);
-                $scrollUp.fadeOut(300);
-            }
+            app.gamePopup(data);
+        });          
     });
 }
 
 //Event listener to add next page of current specified filter of games
 app.getMoreListener = function() {
-    $games.on('click', '.getMore', function () {
+    app.$games.on('click', '.getMore', function () {
         $(this).remove();
         app.pageNum ++;
         app.apiGeneral(app.url);
@@ -174,22 +175,22 @@ app.getMoreListener = function() {
 // Event listener for closing the popup window
 app.closePopupBox = function() {
     const fadingOut = function (){
-        $popupBox.fadeOut(400);
-        $fullScreenBackground.fadeOut(300);
+        app.$popupBox.fadeOut(400);
+        app.$fullScreenBackground.fadeOut(300);
         app.scrollUpEnter();
     }
-    $dialog.on('click', '.closePopup', function() {
+    app.$popupBox.on('click', '.closePopup', function() {
         fadingOut();
     })
 
-    $fullScreenBackground.on('click', function(){
+    app.$fullScreenBackground.on('click', function(){
         fadingOut();
     })
 }
 
 // Event listener for pressing "enter" on game cards
 app.enterListenerGameCard = () => {
-    $games.on('keyup', 'li', function(e){
+    app.$games.on('keyup', 'li', function(e){
         if (e.which === 13) {
             $(this).click();
         }
@@ -198,7 +199,7 @@ app.enterListenerGameCard = () => {
 
 // Event listener for pressing "enter" on the ".getMore" card
 app.enterGetMoreCard = () => {
-    $games.on('keyup', '.getMore', function (e) {
+    app.$games.on('keyup', '.getMore', function (e) {
         if (e.which === 13) {
             $(this).click();
         }
@@ -207,16 +208,16 @@ app.enterGetMoreCard = () => {
 
 app.scrollUpEnter = function () {
     $(window).scroll(function(){
-        if($(this).scrollTop() > $games.offset().top){
-            $scrollUp.fadeIn(100);
+        if($(this).scrollTop() > app.$games.offset().top){
+            app.$scrollUp.fadeIn(100);
         } else {
-            $scrollUp.fadeOut(100);
+            app.$scrollUp.fadeOut(100);
         }
     })
 }
 
 app.scrollUpScrolling = function (){
-    $scrollUp.on('click', function(){
+    app.$scrollUp.on('click', function(){
         $('html, body').animate({scrollTop: 0}, 300);
     })
 }
@@ -228,10 +229,6 @@ app.init = function() {
     app.getMoreListener();
     app.apiGeneral(app.urlGen);
     app.closePopupBox();
-    $fullScreenBackground.hide();
-    $article.hide();
-    $dialog.hide();
-    $scrollUp.hide();
     app.enterListenerGameCard();
     app.enterGetMoreCard();
     app.scrollUpEnter();
