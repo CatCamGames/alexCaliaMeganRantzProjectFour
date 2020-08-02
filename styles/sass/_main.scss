@@ -50,6 +50,7 @@ h5 {
         font-family: $titleFont;
         font-size: 1rem;
     }
+
 .popupBox {
     position: fixed;
     top: 100px;
@@ -58,12 +59,13 @@ h5 {
     background-color: white;
     border-radius: 4px;
     box-shadow: 5px 5px 10px black;
-    overflow: scroll;
+    overflow: auto;
     font-family: $copyFont;
     .popupDescription, .popupMeta {
-        padding: 8px;
+        padding: 10px;
     }
 }
+
 .popupDescription {
     p {
         margin-top: 10px;
@@ -77,7 +79,6 @@ h5 {
     }
 }
 
-
 .popupHeader {
     height: 200px;
     border-radius: 4px 4px 0 0;
@@ -87,6 +88,7 @@ h5 {
     align-items: flex-end;
     justify-content: space-between;
 }
+
 .popupHeader ul {
     margin: 0 8px 8px 0; 
     color: white;
@@ -99,8 +101,6 @@ h5 {
         }
     }
 }
-
-
 
 .closePopup {
     background-color: $primeColorTransparent;
