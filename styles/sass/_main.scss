@@ -4,6 +4,7 @@ grid-template-rows: 1fr;
 grid-template-columns: 270px 1fr;
 grid-gap: 15px;
 margin-bottom: 100px;
+
     .form {
         width: 270px;
         height: calc(240px * 2 + 15px);
@@ -18,10 +19,12 @@ margin-bottom: 100px;
             font-size: 1.75rem;
             margin-bottom: 15px;
         }
+
         label{
             font-family:  $copyFont;
             display: block;
         }
+
         select {
             margin-top: 5px;
             width: calc(250px - 50px);
@@ -33,10 +36,12 @@ margin-bottom: 100px;
 aside {
     margin-top: 15px;
     font-size: 0.8rem;  
+
     ol {
         list-style-type: decimal;
         margin-top: 5px;
         list-style-position: inside;
+
         li {
             margin-top: 10px;
             letter-spacing: 1px;
@@ -46,6 +51,7 @@ aside {
         }
     }
 }
+
 h5 {
         font-family: $titleFont;
         font-size: 1rem;
@@ -61,6 +67,7 @@ h5 {
     box-shadow: 5px 5px 10px black;
     overflow: auto;
     font-family: $copyFont;
+
     .popupDescription, .popupMeta {
         padding: 10px;
     }
@@ -70,9 +77,11 @@ h5 {
     p {
         margin-top: 10px;
     }
+
     br {
         line-height: 1.5rem;
     }
+
     h3 {
         margin-top: 10px;
         font-size: 20px;
@@ -94,8 +103,10 @@ h5 {
     color: white;
     padding: 8px;
     background-color: $primeColorTransparent;
+
     li {
         display: inline;
+
         i {
             margin: 0 3px;
         }
@@ -110,12 +121,18 @@ h5 {
     height: 36px;
     top: 8px;
     right: 8px;
+
     i {
         font-size: 1.5rem;
         color: white;
     }
+    
     &:hover, &:focus {
         transform: scale(1.03);
         background-color: $primeColorOpaque;
+    }
+    
+    &:focus {
+        border: 3px solid red;
     }
 }

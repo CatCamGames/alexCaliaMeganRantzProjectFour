@@ -21,7 +21,7 @@ h2 {
     height: 240px;
     position: relative;
     transition: transform 0.2s;
-
+    
     div {
         display: flex;
         align-items: flex-end;
@@ -38,10 +38,12 @@ h2 {
         p{
             margin-top: 3px;
         }
+
         ul {
             position: absolute;
             right: 5px;
             bottom: 8px;
+            
             i{
                 margin-right: 3px;
             }
@@ -61,6 +63,16 @@ time {
     transform: scale(1.02);
 }
 
+.gameBox::-moz-focus-inner, .gameBox::-moz-focus-outer {
+    outline: none;
+    border: none;
+}
+
+.games li:focus, .games div:focus, select:focus{
+    border: 3px solid red;
+    outline: none;
+}
+
 .getMore {
     background-color: $primeColorOpaque;
     height: 240px;
@@ -72,13 +84,12 @@ time {
         border-radius: 50%;
         width: 170px;
         height: 170px;
-        border: 5px solid rgb(90,114,152);
+        border: 5px solid rgb(110, 138, 184);
         display: block;
         transition-duration: 0.3s;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 5px 5px 10px black;
 
         &:hover {
             transform: scale(1.08);
@@ -91,7 +102,7 @@ time {
             flex-direction:row;
             align-items:center;
             justify-content:center;
-            color: rgb(90,114,152);
+            color: rgb(110, 138, 184);
             border-radius: 50%;
             font-family: $copyFont;
         }
