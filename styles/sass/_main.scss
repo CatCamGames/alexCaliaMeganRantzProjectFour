@@ -131,4 +131,8 @@ h5 {
         transform: scale(1.03);
         background-color: $primeColorOpaque;
     }
+    
+    &:focus {
+        border: 3px solid red;
+    }
 }

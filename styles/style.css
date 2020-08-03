@@ -309,6 +309,10 @@ h5 {
   background-color: #141c29;
 }
 
+.closePopup:focus {
+  border: 3px solid red;
+}
+
 .games {
   display: -ms-grid;
   display: grid;
@@ -386,6 +390,16 @@ time {
 .gameBox:hover {
   -webkit-transform: scale(1.02);
           transform: scale(1.02);
+}
+
+.gameBox::-moz-focus-inner, .gameBox::-moz-focus-outer {
+  outline: none;
+  border: none;
+}
+
+.games li:focus, .games div:focus, select:focus {
+  border: 3px solid red;
+  outline: none;
 }
 
 .getMore {
@@ -526,7 +540,6 @@ footer p:last-child {
     top: 1%;
     margin: 5%;
     width: calc(100% - 10%);
-    height: 95%;
   }
 }
 
@@ -535,6 +548,5 @@ footer p:last-child {
     top: 3%;
     margin: 7%;
     width: calc(100% - 14%);
-    height: 95%;
   }
 }

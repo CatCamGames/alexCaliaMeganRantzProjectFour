@@ -21,7 +21,7 @@ h2 {
     height: 240px;
     position: relative;
     transition: transform 0.2s;
-
+    
     div {
         display: flex;
         align-items: flex-end;
@@ -61,6 +61,16 @@ time {
 
 .gameBox:hover {
     transform: scale(1.02);
+}
+
+.gameBox::-moz-focus-inner, .gameBox::-moz-focus-outer {
+    outline: none;
+    border: none;
+}
+
+.games li:focus, .games div:focus, select:focus{
+    border: 3px solid red;
+    outline: none;
 }
 
 .getMore {

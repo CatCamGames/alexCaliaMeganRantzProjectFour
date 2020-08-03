@@ -15,14 +15,19 @@ app.games = [];
 app.urlGen = `https://api.rawg.io/api/games?dates=${app.todaysDate},${app.futureDate}`;
 app.url = app.urlGen;
 app.pageNum = 1;
+app.activeGameId;
 
 // JQuery cache
-app.$games = $('.games');
-app.$genreSelect = $('.genreSelect');
-app.$popupBox = $('.popupBox');
-app.$fullScreenBackground = $('.fullScreenBackground');
-app.$scrollUp = $('.scrollUp');
-app.$closePopup= $('.closePopup');
+app.$games = $('#games');
+app.$genreSelect = $('#dropdown');
+app.$popupBox = $('#popupBox');
+app.$fullScreenBackground = $('#fullScreenBackground');
+app.$scrollUp = $('#scrollUp');
+app.$closePopup= $('#closePopup');
+
+if (app.$popupBox.is(':visible')){
+    app.$popupBox.focus();
+}
 
  // If statement to check for specific platform name from  the gamePlatforms array and push an array of list items with the corresponding icon, then join them into a string
 app.findIfPlatformsIcons = function(i) {
@@ -61,7 +66,7 @@ app.apiGeneral = function(i){
     }).then((data)=>{
         app.games = data.results;
         app.gridCreation();
-    });
+    })
 }
 
 app.gridCreation = function(){ 
@@ -77,7 +82,7 @@ app.gridCreation = function(){
         }
         const gameGenres = this.genres.map((i)=> i.name).join(", ");
         app.$games.append(
-            `<li class="gameBox" value="${this.id}" tabindex="0">
+            `<li class="gameBox" id="${this.id}" tabindex="0">
                 <div style="background-image:url(${this.background_image}")>
                     <h2>${this.name}</h2>
                 </div>
@@ -107,9 +112,9 @@ app.gamePopup = function(data) {
 
     // Change the elements within the '.popupBox' with the information for the game card that was clicked
     app.$popupBox.html(
-        `<div class="popupHeader" style="background-image:url(${data.background_image}">
-            <button class="closePopup" autofocus>
-                <label class="srOnly">Close the popup</label>
+        `<div class="popupHeader" value="${data.id}" style="background-image:url(${data.background_image}">
+            <button tabindex="0" id="closePopup" class="closePopup">
+                <label class="srOnly">Close the popup by pressing Escape</label>
                 <i class="fas fa-times"></i>
             </button>
             <h2>${data.name}</h2>
@@ -123,13 +128,13 @@ app.gamePopup = function(data) {
             ${data.description}
         </div>
         `
-    ).fadeIn(300);
+    ).fadeIn(300).focus();
     // Fade in the opaque background to make the popup box stand out more
     app.$fullScreenBackground.fadeIn(300);
     app.$scrollUp.fadeOut(300);
 }
 
-//
+
 // Event Listeners looking for genre selection in form
 app.selectionListener = function() {
     app.$genreSelect.on('change', function () {
@@ -150,8 +155,9 @@ app.selectionListener = function() {
 app.gameDetailListener = function(){
     // On click, take the 'value' of the <li> and add it to the API call to get data on the specific game
     app.$games.on('click', 'li', function(){
+        app.activeGameId = $(this).attr("id");  
         $.ajax({
-            url: `https://api.rawg.io/api/games/${$(this).attr("value")}`,
+            url: `https://api.rawg.io/api/games/${$(this).attr("id")}`,
             method: 'GET',
             dataType: 'json',
             headers: {
@@ -159,7 +165,7 @@ app.gameDetailListener = function(){
             },
         }).then(function(data){
             app.gamePopup(data);
-        });          
+        })
     });
 }
 
@@ -172,19 +178,33 @@ app.getMoreListener = function() {
     })
 }
 
+//Controlling focus for keyboard navigation inside of popupBox
+app.popupFocus = function() {
+    if(app.$popupBox.is(':visible')){
+        console.log('yeps');
+    }
+}
+
 // Event listener for closing the popup window
 app.closePopupBox = function() {
     const fadingOut = function (){
         app.$popupBox.fadeOut(400);
         app.$fullScreenBackground.fadeOut(300);
         app.scrollUpEnter();
+        $(`#${app.activeGameId}`).focus();
     }
-    app.$popupBox.on('click', '.closePopup', function() {
+    app.$popupBox.on('click', '#closePopup', function() {
         fadingOut();
+            
+        
     })
-
     app.$fullScreenBackground.on('click', function(){
         fadingOut();
+    })
+    app.$popupBox.on('keyup', function(e){
+        if (e.which === 27) {
+            fadingOut();
+        }
     })
 }
 
@@ -205,6 +225,7 @@ app.enterGetMoreCard = () => {
         }
     })
 }
+
 
 app.scrollUpEnter = function () {
     $(window).scroll(function(){
@@ -233,6 +254,7 @@ app.init = function() {
     app.enterGetMoreCard();
     app.scrollUpEnter();
     app.scrollUpScrolling();
+    app.popupFocus();
 }
 
 // Document ready

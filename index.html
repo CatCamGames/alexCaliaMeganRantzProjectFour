@@ -26,7 +26,7 @@
                     <h4>Filter</h4>
                     <form class="selection">
                         <label for="dropdown">Genres</label>
-                        <select id="dropdown" name="dropdown" class="genreSelect">
+                        <select id="dropdown" name="dropdown" class="genreSelect" tabindex="1">
                             <option value="allGames">All Games</option>
                             <option value="action">Action</option>
                             <option value="adventure">Adventure</option>
@@ -49,13 +49,14 @@
                         </ol>
                     </aside>
                 </div>
-                <ul class="games" id="gamesGrid"></ul>
+                <ul id="games" class="games" id="gamesGrid"></ul>
             </main>
         </div>
     </div>
-    <div class="fullScreenBackground" hidden></div>
-    <div role="dialog" class="popupBox" aria-labelledby="gamePopup" aria-describedby="Popup box with description for the game that was selected." hidden></div>
-    <button class="scrollUp" hidden>
+    <div get-focus="false" id="fullScreenBackground" class="fullScreenBackground" hidden></div>
+    <div tabindex="-1" role="dialog" id="popupBox" class="popupBox" aria-labelledby="gamePopup"
+        aria-describedby="Popup box with description for the game that was selected." hidden></div>
+    <button id="scrollUp" class="scrollUp" hidden>
         <a href="#mainContent">
             <i class="fas fa-chevron-up"></i>
             <label class="srOnly">Back to Top of Page</label>
