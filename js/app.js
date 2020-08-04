@@ -210,7 +210,7 @@ app.closePopupBox = function() {
 
 // Event listener for pressing "enter" on game cards
 app.enterListenerGameCard = () => {
-    app.$games.on('keyup', 'li', function(e){
+    app.$games.on('keydown', 'li', function(e){
         if (e.which === 13) {
             $(this).click();
         }
