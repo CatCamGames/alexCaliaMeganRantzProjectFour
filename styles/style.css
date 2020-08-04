@@ -85,8 +85,20 @@ table {
   overflow: hidden;
 }
 
+/**********************************
+        GENERAL STYLINGS
+***********************************/
 html {
   font-size: 120%;
+}
+
+h2 {
+  color: white;
+  background-color: rgba(20, 28, 41, 0.85);
+  display: inline;
+  font-family: "Oswald", sans-serif;
+  padding: 8px;
+  margin: 0 8px 8px 8px;
 }
 
 .mainWrapper {
@@ -122,6 +134,14 @@ a {
   color: black;
 }
 
+.games li:focus, .games div:focus, select:focus {
+  border: 3px solid red;
+  outline: none;
+}
+
+/**********************************
+        MAIN GRID STYLING
+***********************************/
 .gridFather {
   display: -ms-grid;
   display: grid;
@@ -131,6 +151,25 @@ a {
       grid-template-columns: 1fr;
 }
 
+/**********************************
+   "SCROLL TO TOP" BUTTON STYLINGS
+***********************************/
+.scrollUp {
+  position: fixed;
+  bottom: 10px;
+  right: 7px;
+  font-size: 2rem;
+  background-color: rgba(20, 28, 41, 0.85);
+  border: none;
+}
+
+.scrollUp a {
+  color: white;
+}
+
+/**********************************
+        HEADER STYLINGS
+***********************************/
 header {
   background-color: black;
   background-image: url(https://media.rawg.io/media/games/126/126fbd5ceacddc6ad16fc96e50b1265b.jpg);
@@ -163,6 +202,9 @@ header div span {
   margin: 25px 0 0 10px;
 }
 
+/**********************************
+        MAIN SECTION STYLINGS
+***********************************/
 main {
   display: -ms-grid;
   display: grid;
@@ -174,7 +216,7 @@ main {
   margin-bottom: 100px;
 }
 
-main .form {
+main .genreHowTo {
   width: 270px;
   height: calc(240px * 2 + 15px);
   background-color: #141c29;
@@ -186,26 +228,34 @@ main .form {
   padding: 15px;
 }
 
-main .form h4 {
+main .genreHowTo h4 {
   font-family: "Oswald", sans-serif;
   font-size: 1.75rem;
   margin-bottom: 15px;
 }
 
-main .form label {
+main .genreHowTo label {
   font-family: "Source Sans Pro", sans-serif;
   display: block;
 }
 
-main .form select {
+main .genreHowTo select {
   margin-top: 5px;
   width: calc(250px - 50px);
   font-size: 0.8rem;
 }
 
+/**********************************
+        "HOW TO USE" STYLINGS
+***********************************/
 aside {
   margin-top: 15px;
   font-size: 0.8rem;
+}
+
+aside h5 {
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
 }
 
 aside ol {
@@ -222,11 +272,9 @@ aside ol li {
   font-family: "Source Sans Pro", sans-serif;
 }
 
-h5 {
-  font-family: "Oswald", sans-serif;
-  font-size: 1rem;
-}
-
+/**********************************
+    GAME POPUP BOX STYLINGS
+***********************************/
 .popupBox {
   position: fixed;
   top: 100px;
@@ -236,7 +284,7 @@ h5 {
   border-radius: 4px;
   -webkit-box-shadow: 5px 5px 10px black;
           box-shadow: 5px 5px 10px black;
-  overflow: auto;
+  overflow: scroll;
   font-family: "Source Sans Pro", sans-serif;
 }
 
@@ -244,20 +292,20 @@ h5 {
   padding: 10px;
 }
 
-.popupDescription p {
+.popupBox .popupDescription p {
   margin-top: 10px;
 }
 
-.popupDescription br {
+.popupBox .popupDescription br {
   line-height: 1.5rem;
 }
 
-.popupDescription h3 {
+.popupBox .popupDescription h3 {
   margin-top: 10px;
   font-size: 20px;
 }
 
-.popupHeader {
+.popupBox .popupHeader {
   height: 200px;
   border-radius: 4px 4px 0 0;
   background-size: cover;
@@ -273,22 +321,7 @@ h5 {
           justify-content: space-between;
 }
 
-.popupHeader ul {
-  margin: 0 8px 8px 0;
-  color: white;
-  padding: 8px;
-  background-color: rgba(20, 28, 41, 0.85);
-}
-
-.popupHeader ul li {
-  display: inline;
-}
-
-.popupHeader ul li i {
-  margin: 0 3px;
-}
-
-.closePopup {
+.popupBox .popupHeader .closePopup {
   background-color: rgba(20, 28, 41, 0.85);
   border: none;
   position: absolute;
@@ -298,21 +331,39 @@ h5 {
   right: 8px;
 }
 
-.closePopup i {
+.popupBox .popupHeader .closePopup i {
   font-size: 1.5rem;
   color: white;
 }
 
-.closePopup:hover, .closePopup:focus {
+.popupBox .popupHeader .closePopup:hover, .popupBox .popupHeader .closePopup:focus {
   -webkit-transform: scale(1.03);
           transform: scale(1.03);
   background-color: #141c29;
 }
 
-.closePopup:focus {
+.popupBox .popupHeader .closePopup:focus {
   border: 3px solid red;
 }
 
+.popupBox .popupHeader ul {
+  margin: 0 8px 8px 0;
+  color: white;
+  padding: 8px;
+  background-color: rgba(20, 28, 41, 0.85);
+}
+
+.popupBox .popupHeader ul li {
+  display: inline;
+}
+
+.popupBox .popupHeader ul li i {
+  margin: 0 3px;
+}
+
+/**********************************
+        GAMES GRID STYLING
+***********************************/
 .games {
   display: -ms-grid;
   display: grid;
@@ -326,15 +377,9 @@ h5 {
   grid-column: 2/3;
 }
 
-h2 {
-  color: white;
-  background-color: rgba(20, 28, 41, 0.85);
-  display: inline;
-  font-family: "Oswald", sans-serif;
-  padding: 8px;
-  margin: 0 8px 8px 8px;
-}
-
+/**********************************
+        GAME CARDS STYLING
+***********************************/
 .gameBox {
   -webkit-box-shadow: 0 0 10px slategray;
           box-shadow: 0 0 10px slategray;
@@ -345,6 +390,16 @@ h2 {
   transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
   transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.gameBox:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+.gameBox::-moz-focus-inner, .gameBox::-moz-focus-outer {
+  outline: none;
+  border: none;
 }
 
 .gameBox div {
@@ -365,6 +420,10 @@ h2 {
   font-size: 0.8rem;
 }
 
+.gameBox article time {
+  color: #464646;
+}
+
 .gameBox article p {
   margin-top: 3px;
 }
@@ -379,29 +438,13 @@ h2 {
   margin-right: 3px;
 }
 
-time {
-  color: #464646;
-}
-
 .gameBox li {
   display: inline;
 }
 
-.gameBox:hover {
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
-}
-
-.gameBox::-moz-focus-inner, .gameBox::-moz-focus-outer {
-  outline: none;
-  border: none;
-}
-
-.games li:focus, .games div:focus, select:focus {
-  border: 3px solid red;
-  outline: none;
-}
-
+/**********************************
+    "GET MORE" CARD STYLING
+***********************************/
 .getMore {
   background-color: #141c29;
   height: 240px;
@@ -461,6 +504,9 @@ time {
   font-family: "Source Sans Pro", sans-serif;
 }
 
+/**********************************
+        FOOTER STYLINGS
+***********************************/
 footer {
   background-color: #141c29;
   display: -webkit-box;
@@ -498,19 +544,20 @@ footer p:last-child {
   width: 100%;
 }
 
-.scrollUp {
-  position: fixed;
-  bottom: 10px;
-  right: 7px;
-  font-size: 2rem;
-  background-color: rgba(20, 28, 41, 0.85);
-  border: none;
+/**********************************
+        1250PX MEDIA QUERIES
+***********************************/
+@media (max-width: 1250px) {
+  .popupBox {
+    top: 3%;
+    margin: 7%;
+    width: calc(100% - 14%);
+  }
 }
 
-.scrollUp a {
-  color: white;
-}
-
+/**********************************
+        750PX MEDIA QUERIES
+***********************************/
 @media (max-width: 750px) {
   main {
     -ms-grid-columns: 1fr;
@@ -518,7 +565,7 @@ footer p:last-child {
     -ms-grid-rows: 450px 1fr;
         grid-template-rows: 450px 1fr;
   }
-  main .form {
+  main .genreHowTo {
     width: 100%;
     height: 450px;
     -ms-grid-column: 1;
@@ -540,13 +587,5 @@ footer p:last-child {
     top: 1%;
     margin: 5%;
     width: calc(100% - 10%);
-  }
-}
-
-@media (max-width: 1250px) {
-  .popupBox {
-    top: 3%;
-    margin: 7%;
-    width: calc(100% - 14%);
   }
 }

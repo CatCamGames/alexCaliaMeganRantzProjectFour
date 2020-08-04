@@ -1,3 +1,6 @@
+/**********************************
+        GAMES GRID STYLING
+***********************************/
 .games {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(225px, 1fr) );
@@ -6,21 +9,24 @@
     grid-column: 2/3;
 }
 
-h2 {
-    color: white;
-    background-color: $primeColorTransparent;
-    display: inline;
-    font-family: $titleFont;
-    padding: 8px;
-    margin: 0 8px 8px 8px;
-}
-
+/**********************************
+        GAME CARDS STYLING
+***********************************/
 .gameBox {
     box-shadow: 0 0 10px slategray;
     border-radius: 4px;
     height: 240px;
     position: relative;
     transition: transform 0.2s;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+
+    &::-moz-focus-inner, &::-moz-focus-outer {
+        outline: none;
+        border: none;
+    }
     
     div {
         display: flex;
@@ -34,6 +40,10 @@ h2 {
         padding: 5px 8px;
         font-family: $copyFont;
         font-size: 0.8rem;
+
+        time {
+            color: rgb(70,70,70);
+        }
         
         p{
             margin-top: 3px;
@@ -51,28 +61,13 @@ h2 {
     }
 }
 
-time {
-            color: rgb(70,70,70);
-}
-
 .gameBox li {
     display: inline;
 }
 
-.gameBox:hover {
-    transform: scale(1.02);
-}
-
-.gameBox::-moz-focus-inner, .gameBox::-moz-focus-outer {
-    outline: none;
-    border: none;
-}
-
-.games li:focus, .games div:focus, select:focus{
-    border: 3px solid red;
-    outline: none;
-}
-
+/**********************************
+    "GET MORE" CARD STYLING
+***********************************/
 .getMore {
     background-color: $primeColorOpaque;
     height: 240px;

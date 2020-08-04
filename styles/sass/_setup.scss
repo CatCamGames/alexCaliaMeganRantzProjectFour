@@ -52,36 +52,3 @@ table {
 .visuallyHidden:not(:focus):not(:active) { position: absolute; width: 1px; height: 1px; margin: -1px;border: 0;padding: 0;white-space: nowrap;clip-path: inset(100%);clip: rect(00 0 0);overflow: hidden;}
 
 .srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
-
-html {
-	font-size: 120%;
-}
-
-.mainWrapper {
-	margin: 0 5vw;
-	grid-row: 2/4;
-	grid-column: 1/2;
-}
-
-.fullScreenBackground {
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: rgba(0,0,0,0.5);
-}
-
-a {
-	text-decoration: none;
-	color: white;
-}
-
-.skipLink {
-    position: absolute;
-    left: -1000px;
-    top: 5px;
-    z-index: 999;
-    background: white;
-    color: black;
-}
