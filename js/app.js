@@ -138,6 +138,7 @@ app.gamePopup = function(data) {
     // Fade in the opaque background to make the popup box stand out more
     app.$fullScreenBackground.fadeIn(300);
     app.$scrollUp.fadeOut(300);
+    app.popupBoxFocus();
 }
 
 /**********************************
@@ -215,6 +216,20 @@ app.closePopupBox = function() {
     })
 }
 
+// Event listener for tab and shift tab inside of popupBox to trap focus inside
+app.popupBoxFocus = () => {
+    app.$popupBox.on('keydown', function(e){
+        if (e.which === 9 && e.shiftKey){
+            e.preventDefault();
+        }
+    })
+    app.$popupBox.on('keydown', '#closePopup', function(e){
+        if (e.which === 9){
+            e.preventDefault();
+        }
+    })
+}
+
 // Event listener for pressing "enter" on game cards
 app.enterListenerGameCard = () => {
     app.$games.on('keydown', 'li', function(e){
@@ -264,7 +279,6 @@ app.init = function() {
     app.enterGetMoreCard();
     app.scrollUpEnter();
     app.scrollUpScrolling();
-    app.popupFocus();
 }
 
 /**********************************

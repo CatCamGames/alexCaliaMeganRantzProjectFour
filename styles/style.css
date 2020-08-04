@@ -218,7 +218,7 @@ main {
 
 main .genreHowTo {
   width: 270px;
-  height: calc(240px * 2 + 15px);
+  height: calc(260px * 2 + 15px);
   background-color: #141c29;
   border-radius: 4px;
   -ms-grid-column: 1;
@@ -284,8 +284,9 @@ aside ol li {
   border-radius: 4px;
   -webkit-box-shadow: 5px 5px 10px black;
           box-shadow: 5px 5px 10px black;
-  overflow: scroll;
+  overflow: auto;
   font-family: "Source Sans Pro", sans-serif;
+  max-height: 80%;
 }
 
 .popupBox .popupDescription, .popupBox .popupMeta {
@@ -319,6 +320,7 @@ aside ol li {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  background-color: #6e8ab8;
 }
 
 .popupBox .popupHeader .closePopup {
@@ -367,8 +369,8 @@ aside ol li {
 .games {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(225px, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  -ms-grid-columns: (minmax(240px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   -ms-grid-rows: (1fr)[2];
       grid-template-rows: repeat(2, 1fr);
   grid-gap: 15px;
@@ -384,7 +386,7 @@ aside ol li {
   -webkit-box-shadow: 0 0 10px slategray;
           box-shadow: 0 0 10px slategray;
   border-radius: 4px;
-  height: 240px;
+  height: 260px;
   position: relative;
   -webkit-transition: -webkit-transform 0.2s;
   transition: -webkit-transform 0.2s;
@@ -447,7 +449,7 @@ aside ol li {
 ***********************************/
 .getMore {
   background-color: #141c29;
-  height: 240px;
+  height: 260px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
